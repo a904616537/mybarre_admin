@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import axios from 'axios';
-import querystring    from 'querystring';
-
 let base = '';
 
 export const requestLogin = params => { return axios.post(`${base}/login`, params).then(res => res.data)};
