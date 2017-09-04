@@ -76,7 +76,7 @@
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://localhost:8082/upload"
+			action    = "http://106.14.94.210:8082/upload"
 			list-type = "picture"
 			:multiple = "false"
            :on-remove = "handleRemove"
