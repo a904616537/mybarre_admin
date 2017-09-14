@@ -76,7 +76,7 @@
 					</el-select>
 				</template>
 			</el-table-column>
-			<el-table-column label="Action" width="100">
+			<el-table-column label="Action" width="150">
 				<template scope="scope">
 						<el-button type="info" style="margin: 3px auto;" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button>
 						<el-button type="info" style="margin: 3px auto;" size="small" @click="onSetVideo(scope.$index, scope.row)">Set Video</el-button>

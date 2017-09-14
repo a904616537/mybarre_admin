@@ -6,6 +6,7 @@ import Table    from './views/nav1/Table.vue'
 import Form     from './views/nav1/Form.vue'
 import user     from './views/nav1/user.vue'
 import Video    from './views/nav1/video.vue'
+import Picture    from './views/nav1/picture.vue'
 import Courses  from './views/nav1/courses.vue'
 import Page4    from './views/nav2/Page4.vue'
 import Page5    from './views/nav2/Page5.vue'
@@ -53,6 +54,15 @@ let routes = [
         leaf      : true,
         children: [
             { path: '/video', component: Video, name: 'Video' },
+        ]
+    },{
+        path      : '/',
+        component : Home,
+        name      : 'Picture',
+        iconCls   : 'fa fa-photo',
+        leaf      : true,
+        children: [
+            { path: '/picture', component: Picture, name: 'Picture' },
         ]
     },
     // {

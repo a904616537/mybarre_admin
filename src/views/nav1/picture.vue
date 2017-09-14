@@ -4,29 +4,31 @@
 		<el-col :span="24" class="toolbar" style="padding-bottom: 0px;">
 			<el-form :inline="true" :model="filters">
 				<el-form-item>
-					<el-button @click="getCourses">Refresh List</el-button>
+					<el-button @click="getPicture">Refresh List</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="onCreate">Create Courses</el-button>
+					<el-button type="primary" @click="onCreate">Create Picture</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>
 
 		<!--列表-->
-		<el-table :data="courses" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
+		<el-table :data="pictures" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="selection" width="55">
 			</el-table-column>
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="name" label="Name" width="150" sortable/>
+			<el-table-column prop="name" label="Name" width="100" sortable/>
 			<el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
 				</template>
 			</el-table-column>
-			<el-table-column prop="order" label="Order" width="150" sortable>
+
+			<el-table-column prop="order" label="Order" width="100" sortable>
 				<template scope ="scope">
 					<el-select
+					value-key="order"
 					v-model="scope.row.order"
 					placeholder="Please select a"
 					@change="onSeletct(scope.row._id, 'order', scope.row.order)">
@@ -39,10 +41,12 @@
 					</el-select>
 				</template>
 			</el-table-column>
-			<el-table-column label="Action" width="350">
+			
+			<el-table-column label="Action" width="150">
 				<template scope="scope">
-					<el-button type="info" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button>
-					<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
+						<el-button type="info" style="margin: 3px auto;" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button>
+						<el-button type="info" style="margin: 3px auto;" size="small" @click="onSetPicture(scope.$index, scope.row)">Set Picture</el-button>
+						<el-button type="danger" style="margin: 3px auto;" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -62,9 +66,9 @@
 			action    = "http://106.14.94.210:8082/upload"
 			list-type = "picture"
 			:multiple = "false"
-           :on-remove = "handleRemove"
-           :file-list = "fileList"
-           :on-success= "onSuccess">
+			:on-remove = "handleRemove"
+			:file-list = "fileList"
+			:on-success= "onSuccess">
 				<el-button size="small" type="primary">click upload</el-button>
 				<div slot="tip" class="el-upload__tip">只能上传jpg/png/mp4文件</div>
 			</el-upload>
@@ -86,9 +90,10 @@
 	export default {
 		data() {
 			return {
-				courses_id        : '',
+				vide_id        : '',
+				isPicture        : false,
 				filters        : {},
-				courses         : [],
+				pictures         : [],
 				total          : 0,
 				page           : 1,
 				listLoading    : false,
@@ -96,27 +101,71 @@
 				fileList       : [],
 				addFormVisible : false,
 				addLoading     : false,
-				addForm        : {}
+				addForm        : {},
+				coursess : [],
+				options : [{
+					value: 0,
+					label: 'public'
+				},{
+					value: 1,
+					label: '第一阶段'
+				},{
+					value: 2,
+					label: '第二阶段'
+				},{
+					value: 3,
+					label: '第三阶段'
+				},{
+					value: 4,
+					label: '第四阶段'
+				}]
 			}
 		},
 		methods: {
 			handleCurrentChange(val) {
 				this.page = val;
-				this.getCourses();
+				this.getPicture();
 			},
 			onSetImg(index, row) {
-				this.courses_id = row._id;
+				this.isPicture = false;
+				this.vide_id = row._id;
+				this.addFormVisible = true;
+			},
+			onSetPicture(index, row) {
+				this.isPicture = true;
+				this.vide_id = row._id;
+				this.fileList = row.SmallPic.map(val => {
+					return {
+						name : val,
+						url  : val
+					}
+				})
+						
 				this.addFormVisible = true;
 			},
 			handleRemove(file, fileList) {
-				console.log(file, fileList);
+				// console.log('file', fileList);
+				this.fileList = fileList;
 			},
 			onSuccess(data, file) {
-				this.img = data.msg;
+				if(this.isPicture) {
+					this.fileList.push({
+						name : file.name,
+						url  : data.msg})
+				} else {
+					this.img = data.msg;
+				}
+			},
+			onSeletctCouerses(_id, key, value) {
+				this.onSeletct(_id, key, value);
+			},
+			onSeletctLevel(_id, key, value) {
+				this.onSeletct(_id, key, value);
 			},
 			onSeletct(_id, key, value) {
+				if(this.listLoading) return;
 				let body = querystring.stringify({_id, value, key});
-				fetch(Vue.config.apiUrl + '/courses',{
+				fetch(Vue.config.apiUrl + '/picture',{
 						method         : 'put',
 						headers        : {
 						'Content-Type' : 'application/x-www-form-urlencoded'
@@ -125,12 +174,13 @@
 				})
 				.then(response     => response.json())
 				.then(result       => {
+					console.log('result', result)
 					if(result.status) {
 						this.$message({
 							type    : 'success',
 							message : 'Success'
 						});
-						// this.getVideo();
+						// this.getPicture();
 					} else {
 						this.$message({
 							type    : 'error',
@@ -140,12 +190,12 @@
 				})
 				.catch(err => {});
 			},
-			getCourses() {
+			getPicture() {
 				let para = {
 					page: this.page
 				};
 				this.listLoading = true;
-				fetch(Vue.config.apiUrl + '/courses',{
+				fetch(Vue.config.apiUrl + '/picture',{
 			        method : 'get',
 			        headers : {
 			          'Content-Type' : 'application/x-www-form-urlencoded'
@@ -155,7 +205,7 @@
 			      .then(result => {
 			      	setTimeout(() => {
 						this.total       = result.total;
-						this.courses     = result.data;
+						this.pictures    = result.data;
 						this.listLoading = false;
 			      	}, 1000);
 			      })
@@ -163,7 +213,7 @@
 			},
 			handleDel: function (index, row) {
 				let body = querystring.stringify({_id : row._id});
-				fetch(Vue.config.apiUrl + '/courses',{
+				fetch(Vue.config.apiUrl + '/picture',{
 			        method : 'delete',
 			        headers : {
 			          'Content-Type' : 'application/x-www-form-urlencoded'
@@ -177,7 +227,7 @@
 							type    : 'success',
 							message : 'Success'
 						});
-						this.getCourses();
+						this.getPicture();
 					} else {
 						this.$message({
 							type    : 'error',
@@ -188,12 +238,13 @@
 			      .catch(err => {});
 			},
 			onCreate() {
-				this.$prompt('Please enter courses name', 'Create Courses', {
+				this.$prompt('Please enter picture name', 'Create Picture', {
 					confirmButtonText : 'OK',
 					cancelButtonText  : 'Cancel'
 				}).then(({ value }) => {
+
 					const body = querystring.stringify({name : value});
-					fetch(Vue.config.apiUrl + '/courses',{
+					fetch(Vue.config.apiUrl + '/picture',{
 				        method : 'post',
 				        headers : {
 				          'Content-Type' : 'application/x-www-form-urlencoded'
@@ -207,7 +258,7 @@
 								type    : 'success',
 								message : 'Success'
 							});
-							this.getCourses();
+							this.getPicture();
 				      	} else {
 				      		this.$message({
 								type    : 'error',
@@ -234,8 +285,14 @@
 			},
 			//新增
 			addSubmit: function () {
-				let body = querystring.stringify({_id : this.courses_id, value: this.img, key : 'img'});
-				fetch(Vue.config.apiUrl + '/courses',{
+				let body = '';
+				if(this.isPicture) {
+					const files = this.fileList.map(val => val.url);
+					body = querystring.stringify({_id : this.vide_id, value: files, key : 'SmallPic'});
+				} else {
+					body = querystring.stringify({_id : this.vide_id, value: this.img, key : 'img'});
+				}
+				fetch(Vue.config.apiUrl + '/picture',{
 			        method : 'put',
 			        headers : {
 			          'Content-Type' : 'application/x-www-form-urlencoded'
@@ -249,7 +306,7 @@
 							type    : 'success',
 							message : 'Success'
 						});
-						this.getCourses();
+						this.getPicture();
 						this.$refs.elupload.clearFiles();
 					} else {
 						this.$message({
@@ -269,8 +326,8 @@
 		components: {
 			'v-upload' : Upload
 		},
-		mounted() {
-			this.getCourses();
+		created() {
+			this.getPicture();
 		}
 	}
 
