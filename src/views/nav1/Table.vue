@@ -27,11 +27,9 @@
 			<el-table-column prop="first_name" label="FirstName" width="130" sortable/>
 			<el-table-column prop="last_name" label="LastName" width="130" sortable/>
 			
-			<el-table-column prop="birth" label="Birth" width="100" sortable />
 			<el-table-column prop="email" label="Email" width="120" sortable />
 			<el-table-column prop="phone" label="Mobile" min-width="150" sortable />
-			<el-table-column prop="nationality" label="Nationality" min-width="100" sortable />
-			<el-table-column prop="level" label="level" mix-width="200" sortable>
+			<el-table-column prop="level" label="level" min-width="180" sortable>
 				<template scope ="scope">
 					<el-select
 					v-model="scope.row.level"

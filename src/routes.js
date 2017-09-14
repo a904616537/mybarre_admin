@@ -1,15 +1,16 @@
-import Login from './views/Login.vue'
+import Login    from './views/Login.vue'
 import NotFound from './views/404.vue'
-import Home from './views/Home.vue'
-import Main from './views/Main.vue'
-import Table from './views/nav1/Table.vue'
-import Form from './views/nav1/Form.vue'
-import user from './views/nav1/user.vue'
-import Video from './views/nav1/video.vue'
-import Page4 from './views/nav2/Page4.vue'
-import Page5 from './views/nav2/Page5.vue'
-import Page6 from './views/nav3/Page6.vue'
-import echarts from './views/charts/echarts.vue'
+import Home     from './views/Home.vue'
+import Main     from './views/Main.vue'
+import Table    from './views/nav1/Table.vue'
+import Form     from './views/nav1/Form.vue'
+import user     from './views/nav1/user.vue'
+import Video    from './views/nav1/video.vue'
+import Courses  from './views/nav1/courses.vue'
+import Page4    from './views/nav2/Page4.vue'
+import Page5    from './views/nav2/Page5.vue'
+import Page6    from './views/nav3/Page6.vue'
+import echarts  from './views/charts/echarts.vue'
 
 let routes = [
     {
@@ -35,8 +36,16 @@ let routes = [
             // { path: '/main', component: Main, name: '主页', hidden: true },
             { path: '/', component: Table, name: 'User' }
         ]
-    },
-    {
+    },{
+        path      : '/',
+        component : Home,
+        name      : 'Courses',
+        iconCls   : 'fa  fa-calendar',
+        leaf      : true,
+        children: [
+            { path: '/courses', component: Courses, name: 'Courses' },
+        ]
+    },{
         path      : '/',
         component : Home,
         name      : 'Video',
