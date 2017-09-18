@@ -20,16 +20,14 @@
 
 		<!--列表-->
 		<el-table :data="users" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
-			<el-table-column type="selection" width="55">
-			</el-table-column>
 			<el-table-column type="index" width="60">
 			</el-table-column>
-			<el-table-column prop="first_name" label="FirstName" width="130" sortable/>
-			<el-table-column prop="last_name" label="LastName" width="130" sortable/>
+			<el-table-column prop="first_name" label="First Name" width="130" sortable/>
+			<el-table-column prop="last_name" label="Last Name" width="130" sortable/>
 			
 			<el-table-column prop="email" label="Email" width="120" sortable />
 			<el-table-column prop="phone" label="Mobile" min-width="150" sortable />
-			<el-table-column prop="level" label="level" min-width="180" sortable>
+			<el-table-column prop="level" label="Member Status" min-width="180" sortable>
 				<template scope ="scope">
 					<el-select
 					v-model="scope.row.level"
@@ -47,8 +45,8 @@
 			
 			<el-table-column label="Action" width="200">
 				<template scope="scope">
-					<el-button type="info" size="small" @click="handleEdit(scope.$index, scope.row)">Detailed</el-button>
-					<el-button type="success" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Approved</el-button>
+					<el-button type="info" size="small" @click="handleEdit(scope.$index, scope.row)">Details</el-button>
+					<el-button type="success" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Approve</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -198,35 +196,35 @@
 
 			<div slot="footer" class="dialog-footer">
 				<el-button @click.native="editFormVisible = false">Close</el-button>
-				<el-button type="primary" :disabled="editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Consent Audit</el-button>
+				<el-button type="primary" :disabled="editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Approve</el-button>
 			</div>
 		</el-dialog>
 
 		<!--新增界面-->
 		<el-dialog title="Create User" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-form :model="addForm" label-width="80px" :rules="addFormRules" ref="addForm">
-				<el-form-item label="first_name" prop="first_name">
+				<el-form-item label="First Name" prop="first_name">
 					<el-input v-model="addForm.first_name" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="last_name" prop="last_name">
+				<el-form-item label="Last Name" prop="last_name">
 					<el-input v-model="addForm.last_name" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item prop  = "email" label = "Email">
+				<el-form-item prop  = "Email" label = "Email">
 					<el-input v-model="addForm.email"></el-input>
 				</el-form-item>
-				<el-form-item prop="birth" label="Birth">
+				<el-form-item prop="Birthdate" label="Birth">
 					<el-input v-model="addForm.birth" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item prop="phone" label="Phone Number">
+				<el-form-item prop="Mobile" label="Phone Number">
 					<el-input v-model="addForm.phone"></el-input>
 				</el-form-item>
-				<el-form-item prop="nationality" label="Nationality">
+				<el-form-item prop="Nationality" label="Nationality">
 					<el-input v-model="addForm.nationality"></el-input>
 				</el-form-item>
-				<el-form-item prop="occupation" label="Occupation">
+				<el-form-item prop="Occupation" label="Occupation">
 					<el-input v-model="addForm.occupation"></el-input>
 				</el-form-item>
-				<el-form-item prop="address" label="Address">
+				<el-form-item prop="Address" label="Address">
 					<el-input v-model="addForm.address"></el-input>
 				</el-form-item>
 			</el-form>

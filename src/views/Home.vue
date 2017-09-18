@@ -37,7 +37,7 @@
 					</template>
 				</el-menu>
 				<!--导航菜单-折叠后-->
-				<ul class="el-menu el-menu-vertical-demo collapsed" v-show="collapsed" ref="menuCollapsed">
+				<ul class="el-menu collapsed menu" v-show="collapsed" ref="menuCollapsed">
 					<li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" class="el-submenu item">
 						<template v-if="!item.leaf">
 							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>
@@ -125,7 +125,7 @@
 				this.collapsed=!this.collapsed;
 			},
 			showMenu(i,status){
-				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
+
 			}
 		},
 		mounted() {
@@ -241,6 +241,9 @@
 			.menu-expanded{
 				flex:0 0 230px;
 				width: 230px;
+			}
+			.menu{
+				width: 100% !important;
 			}
 			.content-container {
 				// background: #f1f2f7;

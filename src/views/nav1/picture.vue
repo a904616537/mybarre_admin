@@ -14,8 +14,6 @@
 
 		<!--列表-->
 		<el-table :data="pictures" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
-			<el-table-column type="selection" width="55">
-			</el-table-column>
 			<el-table-column type="index" width="50">
 			</el-table-column>
 			<el-table-column prop="name" label="Name" width="100" sortable/>
@@ -63,7 +61,7 @@
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://106.14.94.210:8082/upload"
+			action    = "http://image.mybarrefitness.com/upload"
 			list-type = "picture"
 			:multiple = "false"
 			:on-remove = "handleRemove"
