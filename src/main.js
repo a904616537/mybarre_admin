@@ -21,7 +21,7 @@ Vue.use(Vuex)
 //NProgress.configure({ showSpinner: false });
 console.log('__ENV__', process.env.NODE_ENV)
 if(process.env.NODE_ENV === 'production') {
-  Vue.config.apiUrl = "http://106.14.94.210:9080"
+  Vue.config.apiUrl = "http://server.mybarrefitness.com"
 } else {
   Vue.config.apiUrl = "http://localhost:9080";
 }
