@@ -91,11 +91,11 @@
 		</el-col>
 		
 		<!--新增界面-->
-		<el-dialog title="Create User" v-model="addFormVisible" :close-on-click-modal="false">
+		<el-dialog title="Create Video" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://image.mybarrefitness.com/upload"
+			action    = "http://106.15.35.233:8082/upload"
 			list-type = "picture"
 			:multiple = "false"
 			:on-remove = "handleRemove"
@@ -140,16 +140,16 @@
 					label: 'public'
 				},{
 					value: 1,
-					label: '第一阶段'
+					label: 'Pre courses'
 				},{
 					value: 2,
-					label: '第二阶段'
+					label: 'Instructor in training'
 				},{
 					value: 3,
-					label: '第三阶段'
+					label: 'MYbarre instructor'
 				},{
 					value: 4,
-					label: '第四阶段'
+					label: 'MYbarre lisenced instructor'
 				}]
 			}
 		},

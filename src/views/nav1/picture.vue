@@ -61,7 +61,7 @@
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://image.mybarrefitness.com/upload"
+			action    = "http://106.15.35.233:8082/upload"
 			list-type = "picture"
 			:multiple = "false"
 			:on-remove = "handleRemove"

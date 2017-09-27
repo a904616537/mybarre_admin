@@ -278,16 +278,16 @@
 				},
 				options : [{
 					value: 0,
-					label: '菜鸟训练'
+					label: 'Pre courses'
 				},{
 					value: 1,
-					label: '第二阶段'
+					label: 'Instructor in training'
 				},{
 					value: 2,
-					label: '第三阶段'
+					label: 'MYbarre instructor'
 				},{
 					value: 3,
-					label: '第四阶段'
+					label: 'MYbarre lisenced instructor'
 				}]
 			}
 		},

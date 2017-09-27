@@ -17,11 +17,11 @@
 			<el-table-column type="index" width="50">
 			</el-table-column>
 			<el-table-column prop="name" label="Name" width="150" sortable/>
-			<el-table-column prop="img" label="FrontCover" sortable>
+			<!-- <el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
 				</template>
-			</el-table-column>
+			</el-table-column> -->
 			<el-table-column prop="order" label="Order" width="150" sortable>
 				<template scope ="scope">
 					<el-select
@@ -39,7 +39,7 @@
 			</el-table-column>
 			<el-table-column label="Action" width="350">
 				<template scope="scope">
-					<el-button type="info" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button>
+					<!-- <el-button type="info" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button> -->
 					<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
 				</template>
 			</el-table-column>
@@ -57,7 +57,7 @@
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://image.mybarrefitness.com/upload"
+			action    = "http://106.15.35.233:8082/upload"
 			list-type = "picture"
 			:multiple = "false"
            :on-remove = "handleRemove"
