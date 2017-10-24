@@ -32,7 +32,7 @@
 					placeholder="Please select a"
 					@change="onSeletct(scope.row._id, 'order', scope.row.order)">
 						<el-option
-						v-for="item in [0, 1,2,3,4,5,6,7,8,9,10]"
+						v-for="item in [0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
 						:key="item"
 						:label="item"
 						:value="item">
@@ -95,7 +95,7 @@
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://106.15.35.233:8082/upload"
+			action    = "http://image.mybarrefitness.com/upload"
 			list-type = "picture"
 			:multiple = "false"
 			:on-remove = "handleRemove"

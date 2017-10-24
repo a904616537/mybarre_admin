@@ -16,7 +16,7 @@
 		<el-table :data="courses" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="name" label="Name" width="150" sortable/>
+			<el-table-column prop="name" label="Name" sortable/>
 			<!-- <el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
@@ -29,7 +29,7 @@
 					placeholder="Please select a"
 					@change="onSeletct(scope.row._id, 'order', scope.row.order)">
 						<el-option
-						v-for="item in [0, 1,2,3,4,5,6,7,8,9,10]"
+						v-for="item in [0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
 						:key="item"
 						:label="item"
 						:value="item">

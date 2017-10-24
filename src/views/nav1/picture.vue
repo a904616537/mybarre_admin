@@ -16,7 +16,7 @@
 		<el-table :data="pictures" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="name" label="Name" width="100" sortable/>
+			<el-table-column prop="name" label="Name" width="200" sortable/>
 			<el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
@@ -31,7 +31,7 @@
 					placeholder="Please select a"
 					@change="onSeletct(scope.row._id, 'order', scope.row.order)">
 						<el-option
-						v-for="item in [0, 1,2,3,4,5,6,7,8,9,10]"
+						v-for="item in [0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
 						:key="item"
 						:label="item"
 						:value="item">
@@ -61,7 +61,7 @@
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://106.15.35.233:8082/upload"
+			action    = "http://image.mybarrefitness.com/upload"
 			list-type = "picture"
 			:multiple = "false"
 			:on-remove = "handleRemove"
