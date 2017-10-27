@@ -137,19 +137,22 @@
 				coursess : [],
 				options : [{
 					value: 0,
-					label: 'public'
+					label: 'Public Availability'
 				},{
 					value: 1,
-					label: 'Pre courses'
+					label: 'Pre Course Instructor'
 				},{
 					value: 2,
-					label: 'Instructor in training'
+					label: 'Instructor in Training'
 				},{
 					value: 3,
-					label: 'MYbarre instructor'
+					label: 'MBI (MYbarre Instructor)'
 				},{
 					value: 4,
-					label: 'MYbarre lisenced instructor'
+					label: 'MBI Elite'
+				},{
+					value: 4,
+					label: 'MBI Master'
 				}]
 			}
 		},
