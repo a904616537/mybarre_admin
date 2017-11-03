@@ -16,7 +16,11 @@
 		<el-table :data="pictures" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="name" label="Name" width="200" sortable/>
+			<el-table-column prop="name" label="Name" width="200" sortable>
+				<template scope ="scope">
+					<el-input v-model="scope.row.name" @blur="onUpdate(scope.row._id, scope.row.name)" placeholder="noooo" size="mini"></el-input>
+				</template>
+			</el-table-column>
 			<el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
@@ -59,11 +63,11 @@
 		<!--新增界面-->
 		<el-dialog title="Create User" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-upload
-			ref="elupload"
+			ref       = "elupload"
 			class     = "upload-demo"
-			action    = "http://image.mybarrefitness.com/upload"
 			list-type = "picture"
-			:multiple = "false"
+			:action    = "uploadUrl"
+			:multiple  = "false"
 			:on-remove = "handleRemove"
 			:file-list = "fileList"
 			:on-success= "onSuccess">
@@ -88,6 +92,7 @@
 	export default {
 		data() {
 			return {
+				uploadUrl : Vue.config.uploadUrl,
 				vide_id        : '',
 				isPicture        : false,
 				filters        : {},
@@ -120,6 +125,34 @@
 			}
 		},
 		methods: {
+			onUpdate(_id, value) {
+				console.log('_id', _id, value)
+				let body = querystring.stringify({_id, value, key: 'name'});
+				fetch(Vue.config.apiUrl + '/picture',{
+						method         : 'put',
+						headers        : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					body
+				})
+				.then(response     => response.json())
+				.then(result       => {
+					console.log('result', result)
+					if(result.status) {
+						this.$message({
+							type    : 'success',
+							message : 'Success'
+						});
+						// this.getPicture();
+					} else {
+						this.$message({
+							type    : 'error',
+							message : 'Failure'
+						});
+					}
+				})
+				.catch(err => {});
+			},
 			handleCurrentChange(val) {
 				this.page = val;
 				this.getPicture();
@@ -277,9 +310,6 @@
 						message : 'Cancel'
 					});
 				});
-			},
-			//编辑
-			editSubmit: function (_id) {
 			},
 			//新增
 			addSubmit: function () {

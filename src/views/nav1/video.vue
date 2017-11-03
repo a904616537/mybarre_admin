@@ -16,7 +16,11 @@
 		<el-table :data="videos" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="name" label="Name" width="100" sortable/>
+			<el-table-column prop="name" label="Name" width="200" sortable>
+				<template scope ="scope">
+					<el-input v-model="scope.row.name" @blur="onSeletct(scope.row._id, 'name', scope.row.name)" placeholder="noooo" size="mini"></el-input>
+				</template>
+			</el-table-column>
 			<el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
@@ -95,7 +99,7 @@
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://image.mybarrefitness.com/upload"
+			:action    = "uploadUrl"
 			list-type = "picture"
 			:multiple = "false"
 			:on-remove = "handleRemove"
@@ -122,6 +126,7 @@
 	export default {
 		data() {
 			return {
+				uploadUrl : Vue.config.uploadUrl,
 				vide_id        : '',
 				isVideo        : false,
 				filters        : {},

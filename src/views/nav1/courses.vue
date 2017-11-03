@@ -16,12 +16,19 @@
 		<el-table :data="courses" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="name" label="Name" sortable/>
+			<el-table-column prop="name" label="Name" width="200" sortable>
+				<template scope ="scope">
+					<el-input v-model="scope.row.name" @blur="onSeletct(scope.row._id, 'name', scope.row.name)" placeholder="noooo" size="mini"></el-input>
+				</template>
+			</el-table-column>
 			<!-- <el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
 				</template>
 			</el-table-column> -->
+			
+			<el-table-column label="" width="">
+			</el-table-column>
 			<el-table-column prop="order" label="Order" width="150" sortable>
 				<template scope ="scope">
 					<el-select

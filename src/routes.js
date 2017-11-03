@@ -4,7 +4,7 @@ import Home     from './views/Home.vue'
 import Main     from './views/Main.vue'
 import Table    from './views/nav1/Table.vue'
 import Form     from './views/nav1/Form.vue'
-import user     from './views/nav1/user.vue'
+import Product     from './views/nav1/product.vue'
 import Video    from './views/nav1/video.vue'
 import Picture    from './views/nav1/picture.vue'
 import Courses  from './views/nav1/courses.vue'
@@ -35,7 +35,7 @@ let routes = [
         leaf: true,
         children: [
             // { path: '/main', component: Main, name: '主页', hidden: true },
-            { path: '/', component: Table, name: 'User' }
+            { path: '/', component: Table, name: 'Users' }
         ]
     },{
         path      : '/',
@@ -44,7 +44,7 @@ let routes = [
         iconCls   : 'fa  fa-calendar',
         leaf      : true,
         children: [
-            { path: '/courses', component: Courses, name: 'Courses' },
+            { path: '/courses', component: Courses, name: 'Coursess' },
         ]
     },{
         path      : '/',
@@ -53,7 +53,7 @@ let routes = [
         iconCls   : 'fa fa-video-camera',
         leaf      : true,
         children: [
-            { path: '/video', component: Video, name: 'Video' },
+            { path: '/video', component: Video, name: 'Videos' },
         ]
     },{
         path      : '/',
@@ -62,7 +62,16 @@ let routes = [
         iconCls   : 'fa fa-photo',
         leaf      : true,
         children: [
-            { path: '/picture', component: Picture, name: 'Picture' },
+            { path: '/picture', component: Picture, name: 'Pictures' },
+        ]
+    },{
+        path      : '/',
+        component : Home,
+        name      : 'Product',
+        iconCls   : 'fa fa-fighter-jet',
+        leaf      : true,
+        children: [
+            { path: '/product', component: Product, name: 'Products' },
         ]
     },
     // {

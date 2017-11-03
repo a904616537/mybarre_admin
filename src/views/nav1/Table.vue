@@ -43,8 +43,9 @@
 				</template>
 			</el-table-column>
 			
-			<el-table-column label="Action" width="200">
+			<el-table-column label="Action" width="300">
 				<template scope="scope">
+					<el-button type="info" size="small" @click="onShowVideo(scope.row)">Downloads</el-button>
 					<el-button type="info" size="small" @click="handleEdit(scope.$index, scope.row)">Details</el-button>
 					<el-button type="success" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Approve</el-button>
 				</template>
@@ -233,6 +234,23 @@
 				<el-button type="primary" @click.native="addSubmit" :loading="addLoading">Submit</el-button>
 			</div>
 		</el-dialog>
+
+		<!--下载界面-->
+		<el-dialog title="Video List" v-model="downloadVisible" :close-on-click-modal="false">
+			<el-row v-for="(item, index) in videos" :key="index">
+				<el-col :span="8">
+					<div class="grid-content">
+						<img :src="item.img" style="height: 85px;">
+					</div>
+				</el-col>
+				<el-col :span="14">
+					<div class="grid-content">{{item.name}}</div>
+				</el-col>
+			</el-row>
+			<div slot="footer" class="dialog-footer">
+				<el-button @click.native="downloadVisible = false">Colse</el-button>
+			</div>
+		</el-dialog>
 	</section>
 </template>
 
@@ -246,15 +264,17 @@
 	export default {
 		data() {
 			return {
-				filters:{},
-				users: [],
-				total: 0,
-				page: 1,
-				listLoading: false,
-				sels: [],//列表选中列
-				editForm : {},
+				filters     : {},
+				users       : [],
+				videos      : [],
+				total       : 0,
+				page        : 1,
+				sels        : [],//列表选中列
+				listLoading : false,
+				editForm    : {},
 				editFormVisible : false,//编辑界面是否显示
 				editLoading     : false,
+				downloadVisible : false,
 
 				addFormVisible: false,//新增界面是否显示
 				addLoading: false,
@@ -314,12 +334,17 @@
 			      .then(response => response.json())
 			      .then(result => {
 					return new Promise((resolve, reject) => {
+						console.log('result user', result)
 						this.total       = result.total;
 						this.users       = result.data;
 						this.listLoading = false;
 					}, 1000);
 			      })
 			      .catch(err => {});
+			},
+			onShowVideo(row) {
+				this.videos = row.videos;
+				this.downloadVisible = true;
 			},
 			//批准
 			handleDel: function (index, row) {
