@@ -27,6 +27,14 @@
 			
 			<el-table-column prop="email" label="Email" width="120" sortable />
 			<el-table-column prop="phone" label="Mobile" min-width="150" sortable />
+
+			
+			<el-table-column prop="is_payment" label="Course Fee" sortable>
+				<template scope ="scope">
+					<el-button v-if="scope.row.is_payment" type="success" size="small" @click="onUpdatePayment(scope.row._id, false)">Paid</el-button>
+					<el-button v-else type="danger" size="small" @click="onUpdatePayment(scope.row._id, true)">Not Paid</el-button>
+				</template>
+			</el-table-column>
 			<el-table-column prop="level" label="Member Status" min-width="180" sortable>
 				<template scope ="scope">
 					<el-select
@@ -483,7 +491,33 @@
 						type    : 'success',
 						message : 'Success'
 					});
-						this.getVideo();
+						this.getUsers();
+					} else {
+						this.$message({
+							type    : 'error',
+							message : 'Failure'
+						});
+					}
+				})
+				.catch(err => {});
+			},
+			onUpdatePayment(_id, is_payment) {
+				let body = querystring.stringify({_id, is_payment});
+				fetch(Vue.config.apiUrl + '/user/payment',{
+						method         : 'post',
+						headers        : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					body
+				})
+				.then(response     => response.json())
+				.then(result       => {
+					if(result.status) {
+						this.$message({
+							type    : 'success',
+							message : 'Success'
+						});
+						this.getUsers();
 					} else {
 						this.$message({
 							type    : 'error',
@@ -496,28 +530,6 @@
 			selsChange: function (sels) {
 				this.sels = sels;
 			},
-			//批量删除
-			batchRemove: function () {
-				var ids = this.sels.map(item => item.id).toString();
-				this.$confirm('确认删除选中记录吗？', '提示', {
-					type: 'warning'
-				}).then(() => {
-					this.listLoading = true;
-					//NProgress.start();
-					let para = { ids: ids };
-					batchRemoveUser(para).then((res) => {
-						this.listLoading = false;
-						//NProgress.done();
-						this.$message({
-							message: '删除成功',
-							type: 'success'
-						});
-						this.getUsers();
-					});
-				}).catch(() => {
-
-				});
-			}
 		},
 		mounted() {
 			this.getUsers();

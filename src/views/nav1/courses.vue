@@ -7,7 +7,7 @@
 					<el-button @click="getCourses">Refresh List</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="onCreate">Create Courses</el-button>
+					<el-button type="primary" @click="onCreate">Create Choreographies</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>

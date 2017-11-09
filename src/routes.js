@@ -4,9 +4,11 @@ import Home     from './views/Home.vue'
 import Main     from './views/Main.vue'
 import Table    from './views/nav1/Table.vue'
 import Form     from './views/nav1/Form.vue'
-import Product     from './views/nav1/product.vue'
+import Product  from './views/nav1/product.vue'
 import Video    from './views/nav1/video.vue'
-import Picture    from './views/nav1/picture.vue'
+import Order    from './views/nav1/order.vue'
+import Studio   from './views/nav1/studio.vue'
+import Picture  from './views/nav1/picture.vue'
 import Courses  from './views/nav1/courses.vue'
 import Page4    from './views/nav2/Page4.vue'
 import Page5    from './views/nav2/Page5.vue'
@@ -40,11 +42,11 @@ let routes = [
     },{
         path      : '/',
         component : Home,
-        name      : 'Courses',
+        name      : 'Choreographies',
         iconCls   : 'fa  fa-calendar',
         leaf      : true,
         children: [
-            { path: '/courses', component: Courses, name: 'Coursess' },
+            { path: '/courses', component: Courses, name: 'Choreographies' },
         ]
     },{
         path      : '/',
@@ -72,6 +74,24 @@ let routes = [
         leaf      : true,
         children: [
             { path: '/product', component: Product, name: 'Products' },
+        ]
+    },{
+        path      : '/',
+        component : Home,
+        name      : 'Order',
+        iconCls   : 'fa fa-bars',
+        leaf      : true,
+        children: [
+            { path: '/order', component: Order, name: 'Order' },
+        ]
+    },{
+        path      : '/',
+        component : Home,
+        name      : 'Studio',
+        iconCls   : 'fa fa-bars',
+        leaf      : true,
+        children: [
+            { path: '/studio', component: Studio, name: 'Studio' },
         ]
     },
     // {

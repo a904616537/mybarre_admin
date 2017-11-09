@@ -45,7 +45,7 @@
 				</template>
 			</el-table-column>
 
-			<el-table-column prop="courses" label="courses" width="180" sortable>
+			<el-table-column prop="courses" label="Choreographies" width="180" :filters="coursess_filter" :filter-method="onCoursessfilter">
 				<template scope ="scope">
 					<el-select
 					value-key="courses"
@@ -140,6 +140,7 @@
 				addLoading     : false,
 				addForm        : {},
 				coursess : [],
+				coursess_filter : [],
 				options : [{
 					value: 0,
 					label: 'Public Availability'
@@ -246,8 +247,17 @@
 			      .then(response => response.json())
 			      .then(result => {
 			      		this.coursess = result.data;
+			      		this.coursess_filter = result.data.map(val => {
+			      			return {
+			      				value : val._id,
+			      				text : val.name
+			      			}
+			      		})
 			      })
 			      .catch(err => {});
+			},
+			onCoursessfilter(val, row) {
+				return row.courses === val;
 			},
 			handleDel: function (index, row) {
 				let body = querystring.stringify({_id : row._id});
