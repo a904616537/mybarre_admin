@@ -63,7 +63,7 @@
 						</el-popover>
 					</template>
 				</el-table-column>
-				<el-table-column prop="address.type" label="Delivery" width="120" sortable></el-table-column>
+				<el-table-column prop="address.type" label="Delivery" width="200" sortable></el-table-column>
 				<el-table-column prop="total" label="Total" width="120" sortable></el-table-column>
 				<el-table-column prop="CreateTime" label="Time" width="120" sortable>
 					<template scope="scope">
