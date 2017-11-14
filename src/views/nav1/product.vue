@@ -54,7 +54,7 @@
 			</el-table>
 
 			<!--新增界面-->
-			<el-dialog title="Create User" v-model="addFormVisible" :close-on-click-modal="false">
+			<el-dialog title="Edit Product Details" v-model="addFormVisible" :close-on-click-modal="false">
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><h1>Product Details</h1></div></el-col>
 				</el-row>
@@ -105,7 +105,7 @@
 						:file-list = "fileList"
 						:on-success= "onSuccess">
 							<el-button size="small" type="primary">click upload</el-button>
-							<div slot="tip" class="el-upload__tip">只能上传jpg/png/mp4文件</div>
+							<div slot="tip" class="el-upload__tip">Accepted file types: JPG and PNG</div>
 						</el-upload>
 					</el-row>
 				</el-card>

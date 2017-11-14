@@ -20,16 +20,16 @@
 				<el-table-column type="expand" label="Products">
 					<template scope="props">
 						<el-form v-for="(item, index) in props.row.order_item" :key="index" label-position="left" inline class="demo-table-expand">
-							<el-form-item label="商品名称">
+							<el-form-item label="Product Name:">
 								<span>{{ item.product.name }}</span>
 							</el-form-item>
-							<el-form-item label="数量">
+							<el-form-item label="Quantity:">
 								<span>{{ item.number }}</span>
 							</el-form-item>
-							<el-form-item label=" 单价">
+							<el-form-item label="Unit Price: ">
 								<span>{{ item.product.price }}</span>
 							</el-form-item>
-							<el-form-item label="小计">
+							<el-form-item label="Subtotal: ">
 								<span>{{ item.total }}</span>
 							</el-form-item>
 						</el-form>
@@ -64,7 +64,11 @@
 					</template>
 				</el-table-column>
 				<el-table-column prop="address.type" label="Delivery" width="200" sortable></el-table-column>
-				<el-table-column prop="total" label="Total" width="120" sortable></el-table-column>
+				<el-table-column prop="total" label="Purchase Total" width="120" sortable>
+					<template scope="scope">
+						<p>¥ {{scope.row.total}}</p>
+					</template>
+				</el-table-column>
 				<el-table-column prop="CreateTime" label="Time" width="120" sortable>
 					<template scope="scope">
 						<p>{{moment(scope.row.CreateTime)}}</p>
@@ -72,8 +76,8 @@
 				</el-table-column>
 				<el-table-column prop="status" label="Status" width="100" sortable>
 					<template scope="scope">
-						<el-button v-if="scope.row.status" type="success" size="small" @click="editOrder(scope.row._id, false)">已确认</el-button>
-						<el-button v-else type="warning" size="small" @click="editOrder(scope.row._id, true)">未确认</el-button>
+						<el-button v-if="scope.row.status" type="success" size="small" @click="editOrder(scope.row._id, false)">Complete</el-button>
+						<el-button v-else type="warning" size="small" @click="editOrder(scope.row._id, true)">Pending</el-button>
 						
 					</template>
 					

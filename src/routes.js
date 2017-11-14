@@ -88,7 +88,7 @@ let routes = [
         path      : '/',
         component : Home,
         name      : 'Hosting Requests',
-        iconCls   : 'fa fa-bars',
+        iconCls   : 'fa fa-stumbleupon',
         leaf      : true,
         children: [
             { path: '/studio', component: Studio, name: 'Hosting Requests' },

@@ -60,7 +60,7 @@
 		</el-col>
 		
 		<!--新增界面-->
-		<el-dialog title="Create User" v-model="addFormVisible" :close-on-click-modal="false">
+		<el-dialog title="Create Choreographies" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
@@ -71,7 +71,7 @@
            :file-list = "fileList"
            :on-success= "onSuccess">
 				<el-button size="small" type="primary">click upload</el-button>
-				<div slot="tip" class="el-upload__tip">只能上传jpg/png/mp4文件</div>
+				<div slot="tip" class="el-upload__tip">Accepted file types: JPG, PNG, and MP4</div>
 			</el-upload>
 			<!-- <v-upload :maxNumberOfFiles="1" :showSuccess="showSuccess"></v-upload> -->
 			<div slot="footer" class="dialog-footer">
@@ -193,7 +193,7 @@
 			      .catch(err => {});
 			},
 			onCreate() {
-				this.$prompt('Please enter courses name', 'Create Courses', {
+				this.$prompt('Please enter a name for the choreography', 'Create Choreography', {
 					confirmButtonText : 'OK',
 					cancelButtonText  : 'Cancel'
 				}).then(({ value }) => {

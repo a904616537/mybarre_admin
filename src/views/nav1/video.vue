@@ -62,7 +62,7 @@
 				</template>
 			</el-table-column>
 			
-			<el-table-column prop="level" label="level" width="200" sortable>
+			<el-table-column prop="level" label="Minimum Status Required" width="200" sortable>
 				<template scope ="scope">
 					<el-select
 					value-key="level"
@@ -81,7 +81,7 @@
 			<el-table-column label="Action" width="150">
 				<template scope="scope">
 						<el-button type="info" style="margin: 3px auto;" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button>
-						<el-button type="info" style="margin: 3px auto;" size="small" @click="onSetVideo(scope.$index, scope.row)">Set Video</el-button>
+						<el-button type="info" style="margin: 3px auto;" size="small" @click="onSetVideo(scope.$index, scope.row)">Upload</el-button>
 						<el-button type="danger" style="margin: 3px auto;" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
 				</template>
 			</el-table-column>
@@ -106,7 +106,7 @@
 			:file-list = "fileList"
 			:on-success= "onSuccess">
 				<el-button size="small" type="primary">click upload</el-button>
-				<div slot="tip" class="el-upload__tip">只能上传jpg/png/mp4文件</div>
+				<div slot="tip" class="el-upload__tip">Accepted file types: JPG, PNG, and MP4</div>
 			</el-upload>
 			<!-- <v-upload :maxNumberOfFiles="1" :showSuccess="showSuccess"></v-upload> -->
 			<div slot="footer" class="dialog-footer">

@@ -25,9 +25,7 @@
 			<el-table-column prop="first_name" label="First Name" width="130" sortable/>
 			<el-table-column prop="last_name" label="Last Name" width="130" sortable/>
 			
-			<el-table-column prop="email" label="Email" width="120" sortable />
 			<el-table-column prop="phone" label="Mobile" min-width="150" sortable />
-
 			
 			<el-table-column prop="is_payment" label="Course Fee" sortable>
 				<template scope ="scope">
@@ -244,7 +242,7 @@
 		</el-dialog>
 
 		<!--下载界面-->
-		<el-dialog title="Video List" v-model="downloadVisible" :close-on-click-modal="false">
+		<el-dialog title="Video Download History" v-model="downloadVisible" :close-on-click-modal="false">
 			<el-row v-for="(item, index) in videos" :key="index">
 				<el-col :span="8">
 					<div class="grid-content">
@@ -256,7 +254,7 @@
 				</el-col>
 			</el-row>
 			<div slot="footer" class="dialog-footer">
-				<el-button @click.native="downloadVisible = false">Colse</el-button>
+				<el-button @click.native="downloadVisible = false">CLOSE</el-button>
 			</div>
 		</el-dialog>
 	</section>

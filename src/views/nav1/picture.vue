@@ -7,7 +7,7 @@
 					<el-button @click="getPicture">Refresh List</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="onCreate">Create Picture</el-button>
+					<el-button type="primary" @click="onCreate">Create Album</el-button>
 				</el-form-item>
 			</el-form>
 		</el-col>
@@ -61,7 +61,7 @@
 		</el-col>
 		
 		<!--新增界面-->
-		<el-dialog title="Create User" v-model="addFormVisible" :close-on-click-modal="false">
+		<el-dialog title="Upload Photos to Album" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-upload
 			ref       = "elupload"
 			class     = "upload-demo"
@@ -71,8 +71,8 @@
 			:on-remove = "handleRemove"
 			:file-list = "fileList"
 			:on-success= "onSuccess">
-				<el-button size="small" type="primary">click upload</el-button>
-				<div slot="tip" class="el-upload__tip">只能上传jpg/png/mp4文件</div>
+				<el-button size="small" type="primary">Click to Upload</el-button>
+				<div slot="tip" class="el-upload__tip">Accepted file types: JPG, PNG, and MP4</div>
 			</el-upload>
 			<!-- <v-upload :maxNumberOfFiles="1" :showSuccess="showSuccess"></v-upload> -->
 			<div slot="footer" class="dialog-footer">
