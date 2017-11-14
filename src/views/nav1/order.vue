@@ -53,7 +53,7 @@
 				<el-table-column label="User">
 					 <template scope="scope">
 						<el-popover trigger="hover" placement="top">
-						<p>Name: {{ scope.row.user?scope.row.user.first_name+scope.row.user.last_name:'' }}</p>
+						<p>Name: {{ scope.row.user?scope.row.user.first_name+' '+scope.row.user.last_name:'' }}</p>
 						<p>Phone: {{ scope.row.user?scope.row.user.phone:'' }}</p>
 						<p>Email: {{ scope.row.user?scope.row.user.email:'' }}</p>
 						<p>Level: {{ scope.row.user?getLevel(scope.row.user.level):'' }}</p>

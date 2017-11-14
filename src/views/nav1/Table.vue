@@ -76,7 +76,7 @@
 				
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Name:</p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.first_name + editForm.last_name}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.first_name + ' ' + editForm.last_name}}</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Email:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.email}}</p></div></el-col>
 				</el-row>

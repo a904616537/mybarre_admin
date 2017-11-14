@@ -78,20 +78,20 @@ let routes = [
     },{
         path      : '/',
         component : Home,
-        name      : 'Order',
+        name      : 'Store Orders',
         iconCls   : 'fa fa-bars',
         leaf      : true,
         children: [
-            { path: '/order', component: Order, name: 'Order' },
+            { path: '/order', component: Order, name: 'Store Orders' },
         ]
     },{
         path      : '/',
         component : Home,
-        name      : 'Studio',
+        name      : 'Hosting Requests',
         iconCls   : 'fa fa-bars',
         leaf      : true,
         children: [
-            { path: '/studio', component: Studio, name: 'Studio' },
+            { path: '/studio', component: Studio, name: 'Hosting Requests' },
         ]
     },
     // {
