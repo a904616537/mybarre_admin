@@ -33,7 +33,7 @@
 					<el-button v-else type="danger" size="small" @click="onUpdatePayment(scope.row._id, true)">Not Paid</el-button>
 				</template>
 			</el-table-column>
-			<el-table-column prop="level" label="Member Status" min-width="180" sortable>
+			<el-table-column prop="level" label="Member Status" min-width="180" :filters="level_filter" :filter-method="onLevelfilter">
 				<template scope ="scope">
 					<el-select
 					v-model="scope.row.level"
@@ -302,6 +302,22 @@
 				//新增界面数据
 				addForm: {
 				},
+				level_filter : [{
+					value: 0,
+					text: 'Pre Course Instructor'
+				},{
+					value: 1,
+					text: 'Instructor in Training'
+				},{
+					value: 2,
+					text: 'MBI (MYbarre Instructor)'
+				},{
+					value: 3,
+					text: 'MBI Elite'
+				},{
+					value: 3,
+					text: 'MBI Master'
+				}],
 				options : [{
 					value: 0,
 					label: 'Pre Course Instructor'
@@ -327,11 +343,9 @@
 			},
 			//获取用户列表
 			getUsers() {
-				let para = {
-					page: this.page
-				};
 				this.listLoading = true;
-				fetch(Vue.config.apiUrl + '/user',{
+
+				fetch(Vue.config.apiUrl + '/user?page='+this.page +'&per_page=20',{
 			        method : 'get',
 			        headers : {
 			          'Content-Type' : 'application/x-www-form-urlencoded'
@@ -347,6 +361,9 @@
 					}, 1000);
 			      })
 			      .catch(err => {});
+			},
+			onLevelfilter(val, row) {
+				return row.level === val;
 			},
 			onShowVideo(row) {
 				this.videos = row.videos;

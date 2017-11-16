@@ -226,7 +226,7 @@
 					page: this.page
 				};
 				this.listLoading = true;
-				fetch(Vue.config.apiUrl + '/picture',{
+				fetch(Vue.config.apiUrl + '/picture?page='+this.page +'&per_page=20',{
 			        method : 'get',
 			        headers : {
 			          'Content-Type' : 'application/x-www-form-urlencoded'
