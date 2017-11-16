@@ -546,7 +546,7 @@
 				this.sels = sels;
 			},
 		},
-		mounted() {
+		created() {
 			this.getUsers();
 		}
 	}
