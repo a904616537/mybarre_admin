@@ -33,7 +33,7 @@
 					<el-button v-else type="danger" size="small" @click="onUpdatePayment(scope.row._id, true)">Not Paid</el-button>
 				</template>
 			</el-table-column>
-			<el-table-column prop="level" label="Member Status" min-width="180">
+			<el-table-column prop="level" label="Member Status" min-width="180" sortable>
 				<template scope ="scope">
 					<el-select
 					v-model="scope.row.level"
