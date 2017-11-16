@@ -33,7 +33,7 @@
 					<el-button v-else type="danger" size="small" @click="onUpdatePayment(scope.row._id, true)">Not Paid</el-button>
 				</template>
 			</el-table-column>
-			<el-table-column prop="level" label="Member Status" min-width="180" :filters="level_filter" :filter-method="onLevelfilter">
+			<el-table-column prop="level" label="Member Status" min-width="180">
 				<template scope ="scope">
 					<el-select
 					v-model="scope.row.level"
@@ -363,7 +363,8 @@
 			      .catch(err => {});
 			},
 			onLevelfilter(val, row) {
-				return row.level === val;
+				console.log('ow.level === val', row.level , val)
+				return row.level == val;
 			},
 			onShowVideo(row) {
 				this.videos = row.videos;
