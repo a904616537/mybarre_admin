@@ -25,7 +25,7 @@
 			<el-table-column prop="first_name" label="First Name" width="130" sortable/>
 			<el-table-column prop="last_name" label="Last Name" width="130" sortable/>
 			
-			<el-table-column prop="phone" label="Mobile" min-width="150" sortable />
+			<el-table-column prop="email" label="Email" min-width="150" sortable />
 			
 			<el-table-column prop="is_payment" label="Course Fee" sortable>
 				<template scope ="scope">
@@ -203,6 +203,7 @@
 
 			<div slot="footer" class="dialog-footer">
 				<el-button @click.native="editFormVisible = false">Close</el-button>
+				<el-button type="primary" :disabled="!editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Reset Password</el-button>
 				<el-button type="primary" :disabled="editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Approve</el-button>
 			</div>
 		</el-dialog>
