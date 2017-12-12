@@ -26,7 +26,6 @@
 					<img :src="scope.row.img" style="height: 80px;" />
 				</template>
 			</el-table-column>
-			<el-table-column prop="path" label="Video Path" sortable />
 
 			<el-table-column prop="order" label="Order" width="100" sortable>
 				<template scope ="scope">
