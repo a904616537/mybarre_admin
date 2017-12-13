@@ -111,7 +111,7 @@
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Remark:</p></div></el-col>
 					<el-col :span="20"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.phone" @blur="onUpdate(editForm._id, 'phone', editForm.phone)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.remark" @blur="onUpdate(editForm._id, 'remark', editForm.remark)" placeholder="noooo" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 			</el-card>
