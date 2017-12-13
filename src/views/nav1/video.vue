@@ -87,20 +87,19 @@
 		</el-table>
 
 		<!--工具条-->
-		<el-col :span="24" class="toolbar">
-			<!-- <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button> -->
+		<!-- <el-col :span="24" class="toolbar">
 			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
-		</el-col>
+		</el-col> -->
 		
 		<!--新增界面-->
 		<el-dialog title="Create Video" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-upload
 			ref="elupload"
-			class     = "upload-demo"
+			class      = "upload-demo"
 			:action    = "uploadUrl"
-			list-type = "picture"
-			:multiple = "false"
+			list-type  = "picture"
+			:multiple  = "false"
 			:on-remove = "handleRemove"
 			:file-list = "fileList"
 			:on-success= "onSuccess">
@@ -220,7 +219,7 @@
 					page: this.page
 				};
 				this.listLoading = true;
-				fetch(Vue.config.apiUrl + '/video?page='+this.page +'&per_page=20',{
+				fetch(Vue.config.apiUrl + '/video?page='+this.page +'&per_page=1000',{
 			        method : 'get',
 			        headers : {
 			          'Content-Type' : 'application/x-www-form-urlencoded'

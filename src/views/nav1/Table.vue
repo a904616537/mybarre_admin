@@ -59,14 +59,13 @@
 		</el-table>
 
 		<!--工具条-->
-		<el-col :span="24" class="toolbar">
-			<!-- <el-button type="danger" @click="batchRemove" :disabled="this.sels.length===0">批量删除</el-button> -->
+		<!-- <el-col :span="24" class="toolbar">
 			<el-pagination layout="prev, pager, next" @current-change="handleCurrentChange" :page-size="20" :total="total" style="float:right;">
 			</el-pagination>
-		</el-col>
+		</el-col> -->
 
 		<!--编辑界面-->
-		<el-dialog title="Editor" v-model="editFormVisible" :close-on-click-modal="false">
+		<el-dialog title="Editor" v-model="editFormVisible" :close-on-click-modal="false" :before-close="onClose">
 			<el-row>
 				<el-col :span="24"><div class="grid-content bg-purple"><h1>Personal Details</h1></div></el-col>
 			</el-row>
@@ -74,25 +73,46 @@
 				
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Name:</p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.first_name + ' ' + editForm.last_name}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input style="width : 100px;" v-model="editForm.first_name" @blur="onUpdate(editForm._id, 'first_name', editForm.first_name)" placeholder="noooo" size="mini"></el-input>
+						<el-input style="width : 100px;" v-model="editForm.last_name" @blur="onUpdate(editForm._id, 'last_name', editForm.last_name)" placeholder="noooo" size="mini"></el-input></p>
+					</div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Email:</p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.email}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.email" @blur="onUpdate(editForm._id, 'email', editForm.email)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Address:</p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.address}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.address" @blur="onUpdate(editForm._id, 'address', editForm.address)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Date Of Birth: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.birth}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.birth" @blur="onUpdate(editForm._id, 'birth', editForm.birth)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Nationality:</p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.nationality}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.nationality" @blur="onUpdate(editForm._id, 'nationality', editForm.nationality)" placeholder="noooo" size="mini"></el-input>
+						</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Occupation:</p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.occupation}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.occupation" @blur="onUpdate(editForm._id, 'occupation', editForm.occupation)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Phone Number:</p></div></el-col>
-					<el-col :span="20"><div class="grid-content bg-purple"><p>{{editForm.phone}}</p></div></el-col>
+					<el-col :span="20"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.phone" @blur="onUpdate(editForm._id, 'phone', editForm.phone)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Remark:</p></div></el-col>
+					<el-col :span="20"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.phone" @blur="onUpdate(editForm._id, 'phone', editForm.phone)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 			</el-card>
 
@@ -202,7 +222,7 @@
 			</el-card>
 
 			<div slot="footer" class="dialog-footer">
-				<el-button @click.native="editFormVisible = false">Close</el-button>
+				<el-button @click.native="onClose">Close</el-button>
 				<el-button type="primary" :disabled="!editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Reset Password</el-button>
 				<el-button type="primary" :disabled="editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Approve</el-button>
 			</div>
@@ -342,11 +362,15 @@
 				this.page = val;
 				this.getUsers();
 			},
+			onClose() {
+				this.editFormVisible = false;
+				this.getUsers();
+			},
 			//获取用户列表
 			getUsers() {
 				this.listLoading = true;
 
-				fetch(Vue.config.apiUrl + '/user?page='+this.page +'&per_page=20',{
+				fetch(Vue.config.apiUrl + '/user?page='+this.page +'&per_page=1000',{
 			        method : 'get',
 			        headers : {
 			          'Content-Type' : 'application/x-www-form-urlencoded'
@@ -490,6 +514,31 @@
 						      });
 					}
 				});
+			},
+			onUpdate(_id, key, value) {
+				let body = querystring.stringify({_id, key, value});
+				fetch(Vue.config.apiUrl + '/user',{
+						method         : 'post',
+						headers        : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					body
+				})
+				.then(response     => response.json())
+				.then(result       => {
+					if(result.status) {
+						this.$message({
+							type    : 'success',
+							message : 'Success'
+						});
+					} else {
+						this.$message({
+							type    : 'error',
+							message : result.err
+						});
+					}
+				})
+				.catch(err => {});
 			},
 			onSeletct(_id, key, value) {
 				let body = querystring.stringify({_id, level : value});
