@@ -108,12 +108,6 @@
 						<el-input v-model="editForm.phone" @blur="onUpdate(editForm._id, 'phone', editForm.phone)" placeholder="noooo" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
-				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>Remark:</p></div></el-col>
-					<el-col :span="20"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.remark" @blur="onUpdate(editForm._id, 'remark', editForm.remark)" placeholder="noooo" size="mini"></el-input>
-					</p></div></el-col>
-				</el-row>
 			</el-card>
 
 			<el-row>
@@ -123,15 +117,23 @@
 				
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Name: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.studio_name}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.studio_name" @blur="onUpdate(editForm._id, 'studio_name', editForm.studio_name)" placeholder="noooo" size="mini"></el-input>
+						</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Address: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.studio_address}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.studio_address" @blur="onUpdate(editForm._id, 'studio_address', editForm.studio_address)" placeholder="noooo" size="mini"></el-input>
+						</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Manager Name: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.manager}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.manager" @blur="onUpdate(editForm._id, 'manager', editForm.manager)" placeholder="noooo" size="mini"></el-input>
+						</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Phone Number: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.studio_phone}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.studio_phone" @blur="onUpdate(editForm._id, 'studio_phone', editForm.studio_phone)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 			</el-card>
 
@@ -143,13 +145,17 @@
 					<el-col :span="24"><div class="grid-content bg-purple"><h3>How did you find out about the MYbarre Instructor Training Course?</h3></div></el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="24"><div class="grid-content bg-purple"><p>{{editForm.motivation1}}</p></div></el-col>
+					<el-col :span="24"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.motivation1" @blur="onUpdate(editForm._id, 'motivation1', editForm.motivation1)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><h3>Please elaborate on your motivation for joining the training?</h3></div></el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="24"><div class="grid-content bg-purple"><p>{{editForm.motivation2}}</p></div></el-col>
+					<el-col :span="24"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.motivation2" @blur="onUpdate(editForm._id, 'motivation2', editForm.motivation2)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><h3>Please list your exercised fitness disciplines, certification level and years of experience</h3></div></el-col>
@@ -178,13 +184,16 @@
 					<el-col :span="24"><div class="grid-content bg-purple"><h3>Do you have any prior MYbarre, bellet or pilates experience?</h3></div></el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="24"><div class="grid-content bg-purple"><p>{{editForm.bellet}}</p></div></el-col>
+					<el-col :span="24"><div class="grid-content bg-purple"><p>
+					<el-input v-model="editForm.bellet" @blur="onUpdate(editForm._id, 'bellet', editForm.bellet)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><h3>Is there anything else you would like to share with us about yourself or fitness / dance experience</h3></div></el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="24"><div class="grid-content bg-purple"><p>{{editForm.share_experience}}</p></div></el-col>
+					<el-col :span="24"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.share_experience" @blur="onUpdate(editForm._id, 'share_experience', editForm.share_experience)" placeholder="noooo" size="mini"></el-input></p></div></el-col>
 				</el-row>
 			</el-card>
 
@@ -194,14 +203,19 @@
 			<el-card class="box-card">
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>VPN: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.isvpn}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.isvpn" @blur="onUpdate(editForm._id, 'isvpn', editForm.isvpn)" placeholder="noooo" size="mini"></el-input></p></div></el-col>
 
 					<el-col :span="4"><div class="grid-content bg-purple"><p>QQ: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.QQ}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.QQ" @blur="onUpdate(editForm._id, 'QQ', editForm.QQ)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Downloading your music: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.music}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+					<el-input v-model="editForm.music" @blur="onUpdate(editForm._id, 'music', editForm.music)" placeholder="noooo" size="mini"></el-input>
+				</p></div></el-col>
 				</el-row>
 			</el-card>
 			<el-row>
@@ -210,14 +224,19 @@
 			<el-card class="box-card">
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Heart condition: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.heart_condition}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.heart_condition" @blur="onUpdate(editForm._id, 'heart_condition', editForm.heart_condition)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Workout: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.workout}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.workout" @blur="onUpdate(editForm._id, 'workout', editForm.workout)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>High blood: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p>{{editForm.high_blood}}</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p><el-input v-model="editForm.high_blood" @blur="onUpdate(editForm._id, 'high_blood', editForm.high_blood)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 			</el-card>
 
