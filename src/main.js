@@ -26,16 +26,16 @@ Vue.use(Vuex)
 console.log('__ENV__', process.env.NODE_ENV)
 if(process.env.NODE_ENV === 'production') {
   // Vue.config.uploadUrl = "http://106.14.94.210:8082/upload";
-  // Vue.config.apiUrl = "http://server.mybarrefitness.com";
-  Vue.config.apiUrl = "http://test.mybarrefitness.com";
+  Vue.config.apiUrl = "http://server.mybarrefitness.com";
+  // Vue.config.apiUrl = "http://test.mybarrefitness.com";
   Vue.config.uploadUrl = "http://image.mybarrefitness.com/upload";
   
 } else {
-  // Vue.config.apiUrl = "http://server.mybarrefitness.com";
+  Vue.config.apiUrl = "http://server.mybarrefitness.com";
   Vue.config.uploadUrl = "http://image.mybarrefitness.com/upload";
 
   // Vue.config.apiUrl = "http://test.mybarrefitness.com";
-  Vue.config.apiUrl = "http://localhost:9080";
+  // Vue.config.apiUrl = "http://localhost:9080";
   // Vue.config.uploadUrl = "http://localhost:8082/upload";
   // Vue.config.apiUrl = "http://server.mybarrefitness.com";
 }
