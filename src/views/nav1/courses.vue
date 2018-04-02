@@ -16,9 +16,40 @@
 		<el-table :data="courses" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column prop="name" label="Name" width="200" sortable>
-				<template scope ="scope">
-					<el-input v-model="scope.row.name" @blur="onSeletct(scope.row._id, 'name', scope.row.name)" placeholder="noooo" size="mini"></el-input>
+			<el-table-column type="expand" label="Products">
+				<template scope="props">
+					<el-table :data="props.row.data.sign_user" highlight-current-row v-loading="listLoading" style="width: 100%;">
+						<el-table-column type="index" width="60">
+						</el-table-column>
+						<el-table-column prop="user.first_name" label="First Name" sortable/>
+						<el-table-column prop="user.last_name" label="Last Name" width="200" sortable/>
+
+						<el-table-column prop="user.phone" label="Phone"/>
+						<el-table-column prop="user.email" label="Email"/>
+						<el-table-column label="Payment">
+							<template scope ="scope">
+								<el-button v-if="scope.row.payment" type="success" size="small" @click="onUpdatePayment(props.row._id, scope.row._id, false)">Paid</el-button>
+								<el-button v-else type="danger" size="small" @click="onUpdatePayment(props.row._id, scope.row._id, true)">Not Paid</el-button>
+							</template>
+						</el-table-column>
+
+
+						<!-- <el-table-column label="Action" width="300">
+							<template scope="scope">
+								<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
+							</template>
+						</el-table-column> -->
+					</el-table>
+				</template>
+			</el-table-column>
+			<el-table-column prop="data.name" label="Name" width="200"/>
+			<el-table-column prop="data.price" label="Price" width="100"/>
+			<el-table-column prop="data.limit" label="Limit" width="100"/>
+			<el-table-column prop="data.location" label="Location"/>
+			<el-table-column prop="data.time" label="Date"/>
+			<el-table-column prop="data.endTime" label="EndTime" width="120">
+				<template scope="scope">
+					<p>{{moment(scope.row.data.endTime)}}</p>
 				</template>
 			</el-table-column>
 			<!-- <el-table-column prop="img" label="FrontCover" sortable>
@@ -27,27 +58,12 @@
 				</template>
 			</el-table-column> -->
 			
-			<el-table-column label="" width="">
-			</el-table-column>
-			<el-table-column prop="order" label="Order" width="150" sortable>
-				<template scope ="scope">
-					<el-select
-					v-model="scope.row.order"
-					placeholder="Please select a"
-					@change="onSeletct(scope.row._id, 'order', scope.row.order)">
-						<el-option
-						v-for="item in [0, 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]"
-						:key="item"
-						:label="item"
-						:value="item">
-						</el-option>
-					</el-select>
-				</template>
-			</el-table-column>
-			<el-table-column label="Action" width="350">
+			<el-table-column prop="order" label="Order" width="150" />
+			<el-table-column label="Action">
 				<template scope="scope">
+					<el-button type="info" size="small" @click="onEdit(scope.$index, scope.row.data)">Edit</el-button>
 					<!-- <el-button type="info" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button> -->
-					<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
+					<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row.data)">Delete</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -60,12 +76,80 @@
 		</el-col>
 		
 		<!--新增界面-->
+		<el-dialog title="Edit Courses Details" v-model="addChoreographiesVisible" :close-on-click-modal="false">
+			<el-row>
+				<el-col :span="24"><div class="grid-content bg-purple"><h1>Courses Details</h1></div></el-col>
+			</el-row>
+			<el-card class="box-card">
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Name:</p></div></el-col>
+					<el-col :span="8">
+						<el-input v-model="form.name" placeholder="Please enter name"></el-input>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Price:</p></div></el-col>
+					<el-col :span="8">
+						<el-input-number v-model="form.price" :min="0" label="Please enter price"></el-input-number>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Limit:</p></div></el-col>
+					<el-col :span="8">
+						<el-input-number v-model="form.limit" :min="0" label="Please enter limit"></el-input-number>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Location:</p></div></el-col>
+					<el-col :span="8">
+						<el-input v-model="form.location" placeholder="Please enter location"></el-input>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Date:</p></div></el-col>
+					<el-col :span="8">
+						<el-input v-model="form.time" placeholder="Please enter Date"></el-input>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>EndTime:</p></div></el-col>
+					<el-col :span="8">
+						<el-date-picker
+						v-model 	= "form.endTime"
+						type 		= "date"
+						placeholder = "Please enter endtime">
+						</el-date-picker>
+					</el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Order:</p></div></el-col>
+					<el-col :span="8">
+						<el-select
+						value-key="order"
+						v-model="form.order"
+						placeholder="Please select a">
+							<el-option
+							v-for="item in orders"
+							:key="item"
+							:label="item"
+							:value="item">
+							</el-option>
+						</el-select>
+					</el-col>
+				</el-row>
+			</el-card>
+			
+			<div slot="footer" class="dialog-footer">
+				<el-button @click.native="addChoreographiesVisible = false">Cancel</el-button>
+				<el-button type="primary" @click.native="addSubmitCourses" :loading="addLoading">Submit</el-button>
+			</div>
+		</el-dialog>
 		<el-dialog title="Create Choreographies" v-model="addFormVisible" :close-on-click-modal="false">
 			<el-upload
 			ref="elupload"
 			class     = "upload-demo"
-			action    = "http://106.15.35.233:8082/upload"
 			list-type = "picture"
+			:action   = "uploadUrl"
 			:multiple = "false"
            :on-remove = "handleRemove"
            :file-list = "fileList"
@@ -83,28 +167,45 @@
 </template>
 
 <script>
-	import Vue from 'vue';
-	import util from '../../common/js/util'
-	import Upload from '../../components/Upload';
+	import Vue         from 'vue';
+	import moment      from 'moment';
+	import util        from '../../common/js/util'
+	import Upload      from '../../components/Upload';
 	import querystring from 'querystring';
 
 	export default {
 		data() {
 			return {
-				courses_id        : '',
+				_id            : null,
+				form           : {
+					name     : '',
+					price    : 0,
+					limit    : 50,
+					location : '',
+					time     : '',
+					endTime  : Date.now(),
+					order    : 10
+				},
+				courses_id     : '',
 				filters        : {},
-				courses         : [],
+				courses        : [],
 				total          : 0,
 				page           : 1,
 				listLoading    : false,
 				sels           : [], //列表选中列
 				fileList       : [],
 				addFormVisible : false,
-				addLoading     : false,
-				addForm        : {}
+				addChoreographiesVisible : false,
+				addLoading : false,
+				addForm    : {},
+				orders     : [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+				uploadUrl  : Vue.config.uploadUrl
 			}
 		},
 		methods: {
+			moment(date) {
+				return moment(date).format('YYYY-MM-DD, h:mm:ss');
+			},
 			handleCurrentChange(val) {
 				this.page = val;
 				this.getCourses();
@@ -112,6 +213,12 @@
 			onSetImg(index, row) {
 				this.courses_id = row._id;
 				this.addFormVisible = true;
+			},
+			onEdit(index, row) {
+				this._id = row._id;
+				this.form = row;
+
+				this.addChoreographiesVisible = true;
 			},
 			handleRemove(file, fileList) {
 				console.log(file, fileList);
@@ -193,49 +300,42 @@
 			      .catch(err => {});
 			},
 			onCreate() {
-				this.$prompt('Please enter a name for the choreography', 'Create Choreography', {
-					confirmButtonText : 'OK',
-					cancelButtonText  : 'Cancel'
-				}).then(({ value }) => {
-					const body = querystring.stringify({name : value});
-					fetch(Vue.config.apiUrl + '/courses',{
-				        method : 'post',
-				        headers : {
-				          'Content-Type' : 'application/x-www-form-urlencoded'
-				        },
-				        body
-				      })
-				      .then(response => response.json())
-				      .then(result => {
-				      	if(result.status) {
-				      		this.$message({
-								type    : 'success',
-								message : 'Success'
-							});
-							this.getCourses();
-				      	} else {
-				      		this.$message({
-								type    : 'error',
-								message : 'Submit failure'
-							});
-				      	}
-				      })
-				      .catch(err => {
-				      	this.$message({
-							type    : 'error',
-							message : 'Submit failure'
-						});
-				      });
-					
-				}).catch(() => {
-					this.$message({
-						type    : 'info',
-						message : 'Cancel'
-					});
-				});
+				this._id = null;
+				this.addChoreographiesVisible = true;
 			},
-			//编辑
-			editSubmit: function (_id) {
+			addSubmitCourses() {
+				this.form.endTime = moment(this.form.endTime).format('LLLL');
+				let body = querystring.stringify(this.form);
+				let method = 'post';
+				if(this._id) {
+					method = 'put';
+					this.form._id = this._id;
+					body = querystring.stringify(this.form);
+				}
+				fetch(Vue.config.apiUrl + '/courses',{
+			        method : method,
+			        headers : {
+			          'Content-Type' : 'application/x-www-form-urlencoded'
+			        },
+			        body
+			      })
+			      .then(response => response.json())
+			      .then(result => {
+					if(result.status) {
+						this.$message({
+							type    : 'success',
+							message : 'Success'
+						});
+						this.getCourses();
+					} else {
+						this.$message({
+							type    : 'error',
+							message : 'Failure'
+						});
+					}
+			      })
+			      .catch(err => {});
+			      this.addChoreographiesVisible = false;
 			},
 			//新增
 			addSubmit: function () {
@@ -265,6 +365,30 @@
 			      })
 			      .catch(err => {});
 			      this.addFormVisible = false;
+			},
+			onUpdatePayment(courses_id, item_id, status) {
+				let body = querystring.stringify({courses : courses_id, item_id: item_id});
+				fetch(Vue.config.apiUrl + '/courses/apply',{
+					method  : 'put',
+					headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
+					body
+				})
+				.then(response => response.json())
+				.then(result => {
+					if(result.status) {
+						this.$message({
+							type    : 'success',
+							message : 'Success'
+						});
+						this.getCourses();
+					} else {
+						this.$message({
+							type    : 'error',
+							message : 'Failure'
+						});
+					}
+				})
+				.catch(err => {});
 			},
 			selsChange: function (sels) {
 				this.sels = sels;
