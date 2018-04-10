@@ -9,6 +9,10 @@
 				<el-form-item>
 					<el-button type="primary" @click="onCreate">Create Choreographies</el-button>
 				</el-form-item>
+				<el-form-item>
+
+					<el-button @click="onDownload">Download Excel</el-button>
+				</el-form-item>
 			</el-form>
 		</el-col>
 
@@ -32,13 +36,23 @@
 								<el-button v-else type="danger" size="small" @click="onUpdatePayment(props.row._id, scope.row._id, true)">Not Paid</el-button>
 							</template>
 						</el-table-column>
-
-
-						<!-- <el-table-column label="Action" width="300">
-							<template scope="scope">
-								<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
+						<el-table-column label="Action">
+							<template scope ="scope">
+								<el-dropdown split-button type="primary" @command="onTransfer" size="small">
+								Transfer
+								<el-dropdown-menu slot="dropdown">
+									<el-dropdown-item
+									v-for="(item, key) in courses"
+									:key="key"
+									:command="item.data._id"
+									:data-courses="props.row.data._id"
+									:data-item="scope.row._id"
+									v-if="item.data._id != props.row.data._id">{{item.data.name}}</el-dropdown-item>
+								</el-dropdown-menu>
+								</el-dropdown>
+								<el-button type="danger" size="small" @click="onDelete(scope.$index, props.row.data, scope.row._id)">Delete</el-button>
 							</template>
-						</el-table-column> -->
+						</el-table-column>
 					</el-table>
 				</template>
 			</el-table-column>
@@ -220,6 +234,44 @@
 
 				this.addChoreographiesVisible = true;
 			},
+			onDelete(index, courses, item_id) {
+				
+				let body = querystring.stringify({courses : courses._id, item_id});
+				fetch(Vue.config.apiUrl + '/courses/apply',{
+						method         : 'delete',
+						headers        : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					body
+				})
+				.then(response     => response.json())
+				.then(result       => {
+					console.log('result', result);
+					courses.sign_user.splice(index, 1);
+				})
+				.catch(err => {});
+			},
+			onTransfer(transfer_id, event) {
+				const courses = event.$attrs['data-courses'],
+				item_id = event.$attrs['data-item'];
+
+				console.log('transfer_id, courses, item_id', transfer_id, courses, item_id)
+
+				let body = querystring.stringify({transfer_id, courses, item_id});
+				fetch(Vue.config.apiUrl + '/courses/apply/transfer',{
+						method         : 'put',
+						headers        : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					},
+					body
+				})
+				.then(response     => response.json())
+				.then(result       => {
+					console.log('result', result);
+					this.getCourses();
+				})
+				.catch(err => {});
+			},
 			handleRemove(file, fileList) {
 				console.log(file, fileList);
 			},
@@ -257,6 +309,7 @@
 					page: this.page
 				};
 				this.listLoading = true;
+				console.log('Vue.config.apiUrl', Vue.config.apiUrl)
 				fetch(Vue.config.apiUrl + '/courses?page='+this.page +'&per_page=20',{
 			        method : 'get',
 			        headers : {
@@ -272,6 +325,21 @@
 			      	}, 1000);
 			      })
 			      .catch(err => {});
+			},
+			onDownload() {
+				fetch(Vue.config.apiUrl + '/courses/download',{
+				method  : 'get',
+					headers : {
+						'Content-Type' : 'application/x-www-form-urlencoded'
+					}
+				})
+				.then(response => response.json())
+				.then(result => {
+					self.location=Vue.config.apiUrl + '/upload/Choreographies.xlsx';
+				})
+				.catch(err => {
+					console.log('err', err)
+				});
 			},
 			handleDel: function (index, row) {
 				let body = querystring.stringify({_id : row._id});
