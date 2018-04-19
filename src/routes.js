@@ -10,6 +10,7 @@ import Order    from './views/nav1/order.vue'
 import Studio   from './views/nav1/studio.vue'
 import Picture  from './views/nav1/picture.vue'
 import Courses  from './views/nav1/courses.vue'
+import Class    from './views/nav1/class.vue'
 import Page4    from './views/nav2/Page4.vue'
 import Page5    from './views/nav2/Page5.vue'
 import Page6    from './views/nav3/Page6.vue'
@@ -38,6 +39,15 @@ let routes = [
         children: [
             // { path: '/main', component: Main, name: '主页', hidden: true },
             { path: '/', component: Table, name: 'Users' }
+        ]
+    },{
+        path      : '/',
+        component : Home,
+        name      : 'Class Registration',
+        iconCls   : 'fa  fa-signing',
+        leaf      : true,
+        children: [
+            { path: '/class', component: Class, name: 'Class Registration' },
         ]
     },{
         path      : '/',

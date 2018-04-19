@@ -9,10 +9,6 @@
 				<el-form-item>
 					<el-button type="primary" @click="onCreate">Create Choreographies</el-button>
 				</el-form-item>
-				<el-form-item>
-
-					<el-button @click="onDownload">Download Excel</el-button>
-				</el-form-item>
 			</el-form>
 		</el-col>
 
@@ -20,52 +16,7 @@
 		<el-table :data="courses" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
 			<el-table-column type="index" width="50">
 			</el-table-column>
-			<el-table-column type="expand" label="Products">
-				<template scope="props">
-					<el-table :data="props.row.data.sign_user" highlight-current-row v-loading="listLoading" style="width: 100%;">
-						<el-table-column type="index" width="60">
-						</el-table-column>
-						<el-table-column prop="user.first_name" label="First Name" sortable/>
-						<el-table-column prop="user.last_name" label="Last Name" width="200" sortable/>
-
-						<el-table-column prop="user.phone" label="Phone"/>
-						<el-table-column prop="user.email" label="Email"/>
-						<el-table-column label="Payment">
-							<template scope ="scope">
-								<el-button v-if="scope.row.payment" type="success" size="small" @click="onUpdatePayment(props.row._id, scope.row._id, false)">Paid</el-button>
-								<el-button v-else type="danger" size="small" @click="onUpdatePayment(props.row._id, scope.row._id, true)">Not Paid</el-button>
-							</template>
-						</el-table-column>
-						<el-table-column label="Action">
-							<template scope ="scope">
-								<el-dropdown split-button type="primary" @command="onTransfer" size="small">
-								Transfer
-								<el-dropdown-menu slot="dropdown">
-									<el-dropdown-item
-									v-for="(item, key) in courses"
-									:key="key"
-									:command="item.data._id"
-									:data-courses="props.row.data._id"
-									:data-item="scope.row._id"
-									v-if="item.data._id != props.row.data._id">{{item.data.name}}</el-dropdown-item>
-								</el-dropdown-menu>
-								</el-dropdown>
-								<el-button type="danger" size="small" @click="onDelete(scope.$index, props.row.data, scope.row._id)">Delete</el-button>
-							</template>
-						</el-table-column>
-					</el-table>
-				</template>
-			</el-table-column>
-			<el-table-column prop="data.name" label="Name" width="200"/>
-			<el-table-column prop="data.price" label="Price" width="100"/>
-			<el-table-column prop="data.limit" label="Limit" width="100"/>
-			<el-table-column prop="data.location" label="Location"/>
-			<el-table-column prop="data.time" label="Date"/>
-			<el-table-column prop="data.endTime" label="EndTime" width="120">
-				<template scope="scope">
-					<p>{{moment(scope.row.data.endTime)}}</p>
-				</template>
-			</el-table-column>
+			<el-table-column prop="name" label="Name"/>
 			<!-- <el-table-column prop="img" label="FrontCover" sortable>
 				<template scope ="scope">
 					<img :src="scope.row.img" style="height: 80px;" />
@@ -75,9 +26,9 @@
 			<el-table-column prop="order" label="Order" width="150" />
 			<el-table-column label="Action">
 				<template scope="scope">
-					<el-button type="info" size="small" @click="onEdit(scope.$index, scope.row.data)">Edit</el-button>
+					<el-button type="info" size="small" @click="onEdit(scope.$index, scope.row)">Edit</el-button>
 					<!-- <el-button type="info" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button> -->
-					<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row.data)">Delete</el-button>
+					<el-button type="danger" size="small" :disabled="scope.row.audit" @click="handleDel(scope.$index, scope.row)">Delete</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -99,40 +50,6 @@
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Name:</p></div></el-col>
 					<el-col :span="8">
 						<el-input v-model="form.name" placeholder="Please enter name"></el-input>
-					</el-col>
-				</el-row>
-				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>Price:</p></div></el-col>
-					<el-col :span="8">
-						<el-input-number v-model="form.price" :min="0" label="Please enter price"></el-input-number>
-					</el-col>
-				</el-row>
-				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>Limit:</p></div></el-col>
-					<el-col :span="8">
-						<el-input-number v-model="form.limit" :min="0" label="Please enter limit"></el-input-number>
-					</el-col>
-				</el-row>
-				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>Location:</p></div></el-col>
-					<el-col :span="8">
-						<el-input v-model="form.location" placeholder="Please enter location"></el-input>
-					</el-col>
-				</el-row>
-				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>Date:</p></div></el-col>
-					<el-col :span="8">
-						<el-input v-model="form.time" placeholder="Please enter Date"></el-input>
-					</el-col>
-				</el-row>
-				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>EndTime:</p></div></el-col>
-					<el-col :span="8">
-						<el-date-picker
-						v-model 	= "form.endTime"
-						type 		= "date"
-						placeholder = "Please enter endtime">
-						</el-date-picker>
 					</el-col>
 				</el-row>
 				<el-row>
@@ -193,11 +110,6 @@
 				_id            : null,
 				form           : {
 					name     : '',
-					price    : 0,
-					limit    : 50,
-					location : '',
-					time     : '',
-					endTime  : Date.now(),
 					order    : 10
 				},
 				courses_id     : '',
@@ -233,44 +145,6 @@
 				this.form = row;
 
 				this.addChoreographiesVisible = true;
-			},
-			onDelete(index, courses, item_id) {
-				
-				let body = querystring.stringify({courses : courses._id, item_id});
-				fetch(Vue.config.apiUrl + '/courses/apply',{
-						method         : 'delete',
-						headers        : {
-						'Content-Type' : 'application/x-www-form-urlencoded'
-					},
-					body
-				})
-				.then(response     => response.json())
-				.then(result       => {
-					console.log('result', result);
-					courses.sign_user.splice(index, 1);
-				})
-				.catch(err => {});
-			},
-			onTransfer(transfer_id, event) {
-				const courses = event.$attrs['data-courses'],
-				item_id = event.$attrs['data-item'];
-
-				console.log('transfer_id, courses, item_id', transfer_id, courses, item_id)
-
-				let body = querystring.stringify({transfer_id, courses, item_id});
-				fetch(Vue.config.apiUrl + '/courses/apply/transfer',{
-						method         : 'put',
-						headers        : {
-						'Content-Type' : 'application/x-www-form-urlencoded'
-					},
-					body
-				})
-				.then(response     => response.json())
-				.then(result       => {
-					console.log('result', result);
-					this.getCourses();
-				})
-				.catch(err => {});
 			},
 			handleRemove(file, fileList) {
 				console.log(file, fileList);
@@ -325,21 +199,6 @@
 			      	}, 1000);
 			      })
 			      .catch(err => {});
-			},
-			onDownload() {
-				fetch(Vue.config.apiUrl + '/courses/download',{
-				method  : 'get',
-					headers : {
-						'Content-Type' : 'application/x-www-form-urlencoded'
-					}
-				})
-				.then(response => response.json())
-				.then(result => {
-					self.location=Vue.config.apiUrl + '/upload/Choreographies.xlsx';
-				})
-				.catch(err => {
-					console.log('err', err)
-				});
 			},
 			handleDel: function (index, row) {
 				let body = querystring.stringify({_id : row._id});
@@ -433,30 +292,6 @@
 			      })
 			      .catch(err => {});
 			      this.addFormVisible = false;
-			},
-			onUpdatePayment(courses_id, item_id, status) {
-				let body = querystring.stringify({courses : courses_id, item_id: item_id});
-				fetch(Vue.config.apiUrl + '/courses/apply',{
-					method  : 'put',
-					headers : { 'Content-Type' : 'application/x-www-form-urlencoded' },
-					body
-				})
-				.then(response => response.json())
-				.then(result => {
-					if(result.status) {
-						this.$message({
-							type    : 'success',
-							message : 'Success'
-						});
-						this.getCourses();
-					} else {
-						this.$message({
-							type    : 'error',
-							message : 'Failure'
-						});
-					}
-				})
-				.catch(err => {});
 			},
 			selsChange: function (sels) {
 				this.sels = sels;
