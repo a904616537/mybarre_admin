@@ -244,6 +244,7 @@
 				<el-button @click.native="onClose">Close</el-button>
 				<el-button type="primary" :disabled="!editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Reset Password</el-button>
 				<el-button type="primary" :disabled="editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Approve</el-button>
+				<el-button type="warning" size="small" @click="onDelete(editForm._id)">Delete</el-button>
 			</div>
 		</el-dialog>
 
@@ -412,6 +413,29 @@
 			onShowVideo(row) {
 				this.videos = row.videos;
 				this.downloadVisible = true;
+			},
+			// 删除用户
+			onDelete(_id) {
+				this.listLoading = true;
+
+				fetch(Vue.config.apiUrl + '/user?user=' + _id,{
+			        method : 'delete',
+			        headers : {
+			          'Content-Type' : 'application/x-www-form-urlencoded'
+			        }
+			      })
+			      .then(response => response.json())
+			      .then(result => {
+			      	setTimeout(() => {
+			      		this.$message({
+							message : 'Submitted successfully.',
+							type    : 'success'
+						});
+						this.editFormVisible = false;
+						this.getUsers();
+			      	}, 1000);
+			      })
+			      .catch(err => {});
 			},
 			//批准
 			handleDel: function (index, row) {

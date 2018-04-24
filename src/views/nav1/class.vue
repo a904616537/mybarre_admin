@@ -135,7 +135,7 @@
 						</el-date-picker>
 					</el-col>
 				</el-row>
-				<el-row>
+				<!-- <el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Level:</p></div></el-col>
 					<el-col :span="8">
 						<el-select
@@ -150,7 +150,7 @@
 							</el-option>
 						</el-select>
 					</el-col>
-				</el-row>
+				</el-row> -->
 
 				
 				<el-row>
@@ -171,7 +171,7 @@
 				</el-row>
 			</el-card>
 			<el-row>
-				<el-col :span="24"><div class="grid-content bg-purple"><h1>Class Videos</h1></div></el-col>
+				<el-col :span="24"><div class="grid-content bg-purple"><h1>Choreographies</h1></div></el-col>
 			</el-row>
 			<el-card class="box-card">
 				<el-transfer
