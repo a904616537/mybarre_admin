@@ -244,6 +244,7 @@
 				<el-button @click.native="onClose">Close</el-button>
 				<el-button type="primary" :disabled="!editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Reset Password</el-button>
 				<el-button type="primary" :disabled="editForm.audit" @click.native="editSubmit(editForm._id)" :loading="editLoading">Approve</el-button>
+				
 				<el-button type="warning" size="small" @click="onDelete(editForm._id)">Delete</el-button>
 			</div>
 		</el-dialog>

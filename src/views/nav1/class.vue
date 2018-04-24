@@ -135,6 +135,8 @@
 						</el-date-picker>
 					</el-col>
 				</el-row>
+
+				
 				<!-- <el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Level:</p></div></el-col>
 					<el-col :span="8">
