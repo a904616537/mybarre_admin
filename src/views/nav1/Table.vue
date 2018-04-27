@@ -81,11 +81,21 @@
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
 						<el-input v-model="editForm.email" @blur="onUpdate(editForm._id, 'email', editForm.email)" placeholder="noooo" size="mini"></el-input>
 					</p></div></el-col>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Wechat ID:</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.wechatid" @blur="onUpdate(editForm._id, 'wechatid', editForm.wechatid)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
+
+					
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Address:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
 						<el-input v-model="editForm.address" @blur="onUpdate(editForm._id, 'address', editForm.address)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>City:</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.city" @blur="onUpdate(editForm._id, 'city', editForm.city)" placeholder="noooo" size="mini"></el-input>
 					</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Date Of Birth: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
@@ -134,6 +144,14 @@
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
 						<el-input v-model="editForm.studio_phone" @blur="onUpdate(editForm._id, 'studio_phone', editForm.studio_phone)" placeholder="noooo" size="mini"></el-input>
 					</p></div></el-col>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Web: </p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.studio_web" @blur="onUpdate(editForm._id, 'studio_web', editForm.studio_web)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio: </p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.studio" @blur="onUpdate(editForm._id, 'studio', editForm.studio)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
 				</el-row>
 			</el-card>
 
@@ -155,6 +173,33 @@
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
 						<el-input v-model="editForm.motivation2" @blur="onUpdate(editForm._id, 'motivation2', editForm.motivation2)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
+				</el-row>
+
+
+
+				<el-row>
+					<el-col :span="24"><div class="grid-content bg-purple"><h3>Are you already teaching? so which classes? Full or Part time?</h3></div></el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="24"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.motivation3" @blur="onUpdate(editForm._id, 'motivation3', editForm.motivation3)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="24"><div class="grid-content bg-purple"><h3>What is your goal after taking the training? (example to teach, top open studio, only for personal learning)</h3></div></el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="24"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.motivation4" @blur="onUpdate(editForm._id, 'motivation4', editForm.motivation4)" placeholder="noooo" size="mini"></el-input>
+					</p></div></el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="24"><div class="grid-content bg-purple"><h3>How many barre or MYbarre classes have you taken and where</h3></div></el-col>
+				</el-row>
+				<el-row>
+					<el-col :span="24"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.motivation5" @blur="onUpdate(editForm._id, 'motivation5', editForm.motivation5)" placeholder="noooo" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>

@@ -7,7 +7,7 @@
 					<el-button @click="getCourses">Refresh List</el-button>
 				</el-form-item>
 				<el-form-item>
-					<el-button type="primary" @click="onCreate">Create Class</el-button>
+					<el-button type="primary" @click="onCreate">Create Course</el-button>
 				</el-form-item>
 				<el-form-item>
 
@@ -25,8 +25,8 @@
 					<el-table :data="props.row.data.sign_user" highlight-current-row v-loading="listLoading" style="width: 100%;">
 						<el-table-column type="index" width="60">
 						</el-table-column>
-						<el-table-column prop="user.first_name" label="First Name" sortable/>
-						<el-table-column prop="user.last_name" label="Last Name" width="200" sortable/>
+						<el-table-column prop="user.first_name" label="First Name"/>
+						<el-table-column prop="user.last_name" label="Last Name"/>
 
 						<el-table-column prop="user.phone" label="Phone"/>
 						<el-table-column prop="user.email" label="Email"/>
@@ -36,7 +36,12 @@
 								<el-button v-else type="danger" size="small" @click="onUpdatePayment(props.row.data._id, scope.row._id, true)">Not Paid</el-button>
 							</template>
 						</el-table-column>
-						<el-table-column label="Action">
+						<el-table-column label="Member Status" width="200">
+							<template scope ="scope">
+								<span>{{scope.row.level}}</span>
+							</template>
+						</el-table-column>
+						<el-table-column label="Action" width="200">
 							<template scope ="scope">
 								<el-dropdown split-button type="primary" @command="onTransfer" size="small">
 								Transfer
@@ -73,7 +78,7 @@
 			</el-table-column> -->
 			
 			<el-table-column prop="data.order" label="Order" width="150" />
-			<el-table-column label="Action">
+			<el-table-column label="Action" width="150">
 				<template scope="scope">
 					<el-button type="info" size="small" @click="onEdit(scope.$index, scope.row.data)">Edit</el-button>
 					<!-- <el-button type="info" size="small" @click="onSetImg(scope.$index, scope.row)">Set Front Cover</el-button> -->
@@ -90,9 +95,9 @@
 		</el-col>
 		
 		<!--新增界面-->
-		<el-dialog title="Edit Class Details" v-model="addChoreographiesVisible" :close-on-click-modal="false">
+		<el-dialog title="Edit Course Details" v-model="addChoreographiesVisible" :close-on-click-modal="false">
 			<el-row>
-				<el-col :span="24"><div class="grid-content bg-purple"><h1>Class Details</h1></div></el-col>
+				<el-col :span="24"><div class="grid-content bg-purple"><h1>Course Details</h1></div></el-col>
 			</el-row>
 			<el-card class="box-card">
 				<el-row>
@@ -120,13 +125,13 @@
 					</el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>Date:</p></div></el-col>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Course Date:</p></div></el-col>
 					<el-col :span="8">
 						<el-input v-model="form.time" placeholder="Please enter Date"></el-input>
 					</el-col>
 				</el-row>
 				<el-row>
-					<el-col :span="4"><div class="grid-content bg-purple"><p>EndTime:</p></div></el-col>
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Cutoff Date:</p></div></el-col>
 					<el-col :span="8">
 						<el-date-picker
 						v-model 	= "form.endTime"

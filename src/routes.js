@@ -43,11 +43,11 @@ let routes = [
     },{
         path      : '/',
         component : Home,
-        name      : 'Class Registration',
+        name      : 'Course Registration',
         iconCls   : 'fa  fa-signing',
         leaf      : true,
         children: [
-            { path: '/class', component: Class, name: 'Class Registration' },
+            { path: '/class', component: Class, name: 'Course Registration' },
         ]
     },{
         path      : '/',
