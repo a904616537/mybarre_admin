@@ -253,22 +253,16 @@
 				uploadUrl  : Vue.config.uploadUrl,
 				options : [{
 					value: 0,
-					label: 'Public Availability'
-				},{
-					value: 1,
 					label: 'Pre Course Instructor'
 				},{
-					value: 2,
+					value: 1,
 					label: 'Instructor in Training'
 				},{
-					value: 3,
+					value: 2,
 					label: 'MBI (MYbarre Instructor)'
 				},{
-					value: 4,
-					label: 'MBI Elite'
-				},{
-					value: 4,
-					label: 'MBI Master'
+					value: 3,
+					label: 'MBI Elite/MBI Master'
 				}]
 			}
 		},
