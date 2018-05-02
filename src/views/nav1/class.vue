@@ -38,7 +38,7 @@
 						</el-table-column>
 						<el-table-column label="Member Status" width="200">
 							<template scope ="scope">
-								<span>{{scope.row.level}}</span>
+								<span>{{switchLevel(scope.row.user.level)}}</span>
 							</template>
 						</el-table-column>
 						<el-table-column label="Action" width="200">
@@ -275,6 +275,10 @@
 		methods: {
 			moment(date) {
 				return moment(date).format('YYYY-MM-DD, h:mm:ss');
+			},
+			switchLevel(value) {
+				const opt = this.options.find(val => val.value == value);
+				return opt.label;
 			},
 			handleCurrentChange(val) {
 				this.page = val;

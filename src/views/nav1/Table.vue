@@ -74,16 +74,16 @@
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Name:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input style="width : 100px;" v-model="editForm.first_name" @blur="onUpdate(editForm._id, 'first_name', editForm.first_name)" placeholder="noooo" size="mini"></el-input>
-						<el-input style="width : 100px;" v-model="editForm.last_name" @blur="onUpdate(editForm._id, 'last_name', editForm.last_name)" placeholder="noooo" size="mini"></el-input></p>
+						<el-input style="width : 100px;" v-model="editForm.first_name" @blur="onUpdate(editForm._id, 'first_name', editForm.first_name)" placeholder="" size="mini"></el-input>
+						<el-input style="width : 100px;" v-model="editForm.last_name" @blur="onUpdate(editForm._id, 'last_name', editForm.last_name)" placeholder="" size="mini"></el-input></p>
 					</div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Email:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.email" @blur="onUpdate(editForm._id, 'email', editForm.email)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.email" @blur="onUpdate(editForm._id, 'email', editForm.email)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Wechat ID:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.wechatid" @blur="onUpdate(editForm._id, 'wechatid', editForm.wechatid)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.wechatid" @blur="onUpdate(editForm._id, 'wechatid', editForm.wechatid)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 
 					
@@ -91,31 +91,31 @@
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Address:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.address" @blur="onUpdate(editForm._id, 'address', editForm.address)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.address" @blur="onUpdate(editForm._id, 'address', editForm.address)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>City:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.city" @blur="onUpdate(editForm._id, 'city', editForm.city)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.city" @blur="onUpdate(editForm._id, 'city', editForm.city)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Date Of Birth: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.birth" @blur="onUpdate(editForm._id, 'birth', editForm.birth)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.birth" @blur="onUpdate(editForm._id, 'birth', editForm.birth)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Nationality:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.nationality" @blur="onUpdate(editForm._id, 'nationality', editForm.nationality)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.nationality" @blur="onUpdate(editForm._id, 'nationality', editForm.nationality)" placeholder="" size="mini"></el-input>
 						</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Occupation:</p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.occupation" @blur="onUpdate(editForm._id, 'occupation', editForm.occupation)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.occupation" @blur="onUpdate(editForm._id, 'occupation', editForm.occupation)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Phone Number:</p></div></el-col>
 					<el-col :span="20"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.phone" @blur="onUpdate(editForm._id, 'phone', editForm.phone)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.phone" @blur="onUpdate(editForm._id, 'phone', editForm.phone)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 			</el-card>
@@ -128,29 +128,29 @@
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Name: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.studio_name" @blur="onUpdate(editForm._id, 'studio_name', editForm.studio_name)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.studio_name" @blur="onUpdate(editForm._id, 'studio_name', editForm.studio_name)" placeholder="" size="mini"></el-input>
 						</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Address: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.studio_address" @blur="onUpdate(editForm._id, 'studio_address', editForm.studio_address)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.studio_address" @blur="onUpdate(editForm._id, 'studio_address', editForm.studio_address)" placeholder="" size="mini"></el-input>
 						</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Manager Name: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.manager" @blur="onUpdate(editForm._id, 'manager', editForm.manager)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.manager" @blur="onUpdate(editForm._id, 'manager', editForm.manager)" placeholder="" size="mini"></el-input>
 						</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Phone Number: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.studio_phone" @blur="onUpdate(editForm._id, 'studio_phone', editForm.studio_phone)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.studio_phone" @blur="onUpdate(editForm._id, 'studio_phone', editForm.studio_phone)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio Web: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.studio_web" @blur="onUpdate(editForm._id, 'studio_web', editForm.studio_web)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.studio_web" @blur="onUpdate(editForm._id, 'studio_web', editForm.studio_web)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Studio: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.studio" @blur="onUpdate(editForm._id, 'studio', editForm.studio)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.studio" @blur="onUpdate(editForm._id, 'studio', editForm.studio)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 			</el-card>
@@ -164,7 +164,13 @@
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.motivation1" @blur="onUpdate(editForm._id, 'motivation1', editForm.motivation1)" placeholder="noooo" size="mini"></el-input>
+						<el-input
+						type        = "textarea"
+						:rows		= "3"
+						v-model     = "editForm.motivation1"
+						@blur       = "onUpdate(editForm._id, 'motivation1', editForm.motivation1)"
+						placeholder = ""
+						size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
@@ -172,18 +178,22 @@
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.motivation2" @blur="onUpdate(editForm._id, 'motivation2', editForm.motivation2)" placeholder="noooo" size="mini"></el-input>
+						<el-input
+						type        = "textarea"
+						:rows		= "3"
+						v-model="editForm.motivation2" @blur="onUpdate(editForm._id, 'motivation2', editForm.motivation2)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
-
-
 
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><h3>Are you already teaching? so which classes? Full or Part time?</h3></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.motivation3" @blur="onUpdate(editForm._id, 'motivation3', editForm.motivation3)" placeholder="noooo" size="mini"></el-input>
+						<el-input
+						type        = "textarea"
+						:rows		= "3"
+						v-model="editForm.motivation3" @blur="onUpdate(editForm._id, 'motivation3', editForm.motivation3)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
@@ -191,7 +201,10 @@
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.motivation4" @blur="onUpdate(editForm._id, 'motivation4', editForm.motivation4)" placeholder="noooo" size="mini"></el-input>
+						<el-input
+						type        = "textarea"
+						:rows		= "3"
+						v-model="editForm.motivation4" @blur="onUpdate(editForm._id, 'motivation4', editForm.motivation4)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
@@ -199,7 +212,10 @@
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.motivation5" @blur="onUpdate(editForm._id, 'motivation5', editForm.motivation5)" placeholder="noooo" size="mini"></el-input>
+						<el-input
+						type        = "textarea"
+						:rows		= "3"
+						v-model="editForm.motivation5" @blur="onUpdate(editForm._id, 'motivation5', editForm.motivation5)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
@@ -230,7 +246,10 @@
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
-					<el-input v-model="editForm.bellet" @blur="onUpdate(editForm._id, 'bellet', editForm.bellet)" placeholder="noooo" size="mini"></el-input>
+					<el-input
+					type        = "textarea"
+						:rows		= "3"
+					v-model="editForm.bellet" @blur="onUpdate(editForm._id, 'bellet', editForm.bellet)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
@@ -238,7 +257,10 @@
 				</el-row>
 				<el-row>
 					<el-col :span="24"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.share_experience" @blur="onUpdate(editForm._id, 'share_experience', editForm.share_experience)" placeholder="noooo" size="mini"></el-input></p></div></el-col>
+						<el-input
+						type        = "textarea"
+						:rows		= "3"
+						v-model="editForm.share_experience" @blur="onUpdate(editForm._id, 'share_experience', editForm.share_experience)" placeholder="" size="mini"></el-input></p></div></el-col>
 				</el-row>
 			</el-card>
 
@@ -249,17 +271,17 @@
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>VPN: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.isvpn" @blur="onUpdate(editForm._id, 'isvpn', editForm.isvpn)" placeholder="noooo" size="mini"></el-input></p></div></el-col>
+						<el-input v-model="editForm.isvpn" @blur="onUpdate(editForm._id, 'isvpn', editForm.isvpn)" placeholder="" size="mini"></el-input></p></div></el-col>
 
 					<el-col :span="4"><div class="grid-content bg-purple"><p>QQ: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.QQ" @blur="onUpdate(editForm._id, 'QQ', editForm.QQ)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.QQ" @blur="onUpdate(editForm._id, 'QQ', editForm.QQ)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Downloading your music: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-					<el-input v-model="editForm.music" @blur="onUpdate(editForm._id, 'music', editForm.music)" placeholder="noooo" size="mini"></el-input>
+					<el-input v-model="editForm.music" @blur="onUpdate(editForm._id, 'music', editForm.music)" placeholder="" size="mini"></el-input>
 				</p></div></el-col>
 				</el-row>
 			</el-card>
@@ -270,17 +292,17 @@
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Heart condition: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.heart_condition" @blur="onUpdate(editForm._id, 'heart_condition', editForm.heart_condition)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.heart_condition" @blur="onUpdate(editForm._id, 'heart_condition', editForm.heart_condition)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 
 					<el-col :span="4"><div class="grid-content bg-purple"><p>Workout: </p></div></el-col>
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
-						<el-input v-model="editForm.workout" @blur="onUpdate(editForm._id, 'workout', editForm.workout)" placeholder="noooo" size="mini"></el-input>
+						<el-input v-model="editForm.workout" @blur="onUpdate(editForm._id, 'workout', editForm.workout)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 				<el-row>
 					<el-col :span="4"><div class="grid-content bg-purple"><p>High blood: </p></div></el-col>
-					<el-col :span="8"><div class="grid-content bg-purple"><p><el-input v-model="editForm.high_blood" @blur="onUpdate(editForm._id, 'high_blood', editForm.high_blood)" placeholder="noooo" size="mini"></el-input>
+					<el-col :span="8"><div class="grid-content bg-purple"><p><el-input v-model="editForm.high_blood" @blur="onUpdate(editForm._id, 'high_blood', editForm.high_blood)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 				</el-row>
 			</el-card>
