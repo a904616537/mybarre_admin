@@ -90,7 +90,6 @@
 					<el-col :span="8"><div class="grid-content bg-purple"><p>
 						<el-input v-model="editForm.language" @blur="onUpdate(editForm._id, 'language', editForm.language)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
-
 					
 				</el-row>
 				<el-row>
