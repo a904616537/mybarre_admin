@@ -86,6 +86,11 @@
 						<el-input v-model="editForm.wechatid" @blur="onUpdate(editForm._id, 'wechatid', editForm.wechatid)" placeholder="" size="mini"></el-input>
 					</p></div></el-col>
 
+					<el-col :span="4"><div class="grid-content bg-purple"><p>Language:</p></div></el-col>
+					<el-col :span="8"><div class="grid-content bg-purple"><p>
+						<el-input v-model="editForm.language" @blur="onUpdate(editForm._id, 'language', editForm.language)" placeholder="" size="mini"></el-input>
+					</p></div></el-col>
+
 					
 				</el-row>
 				<el-row>
