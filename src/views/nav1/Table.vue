@@ -19,8 +19,9 @@
 		</el-col>
 
 		<!--列表-->
-		<el-table :data="users" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;">
+		<el-table :data="users" highlight-current-row v-loading="listLoading" @selection-change="selsChange" style="width: 100%;"  :row-class-name="tableRowClassName">
 			<el-table-column type="index" width="60">
+
 			</el-table-column>
 			<el-table-column prop="first_name" label="First Name" width="130" sortable/>
 			<el-table-column prop="last_name" label="Last Name" width="130" sortable/>
@@ -383,6 +384,7 @@
 	export default {
 		data() {
 			return {
+				value4 : true,
 				filters     : {},
 				users       : [],
 				videos      : [],
@@ -430,6 +432,12 @@
 				},{
 					value: 3,
 					text: 'MBI Master'
+				},{
+					value: -1,
+					text: 'No Exam Pass'
+				},{
+					value: -2,
+					text: 'Licence Expired'
 				}],
 				options : [{
 					value: 0,
@@ -446,6 +454,12 @@
 				},{
 					value: 3,
 					label: 'MBI Master'
+				},{
+					value : -1,
+					label  : 'No Exam Pass'
+				},{
+					value : -2,
+					label  : 'Licence Expired'
 				}]
 			}
 		},
@@ -709,6 +723,14 @@
 			selsChange: function (sels) {
 				this.sels = sels;
 			},
+			tableRowClassName(row, index) {
+				if(row.level == -1) {
+					return 'user-locking';
+				} else if(row.level == -2) {
+					return 'user-locking-2';
+				}
+				return '';
+			}
 		},
 		beforeMount() {
 			this.getUsers();
@@ -717,6 +739,11 @@
 
 </script>
 
-<style scoped>
-
+<style>
+.user-locking{
+	background-color: rgba(247,186,42, 0.6)  !important;
+}
+.user-locking-2 {
+	background-color: rgba(31,45,61, 0.6)  !important;
+}
 </style>
