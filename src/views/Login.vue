@@ -52,16 +52,17 @@
             //NProgress.start();
             var loginParams = { username: this.ruleForm2.account, password: this.ruleForm2.checkPass };
             requestLogin(loginParams).then(data => {
+              console.log('data',data);
               this.logining = false;
               //NProgress.done();
-              let { msg, code, user } = data;
-              if (code !== 200) {
+              let { status, admin } = data;
+              if (!status) {
                 this.$message({
-                  message: msg,
+                  message: '登录错误',
                   type: 'error'
                 });
               } else {
-                sessionStorage.setItem('user', JSON.stringify(user));
+                sessionStorage.setItem('user', JSON.stringify(admin));
                 this.$router.push({ path: '/' });
               }
             });
